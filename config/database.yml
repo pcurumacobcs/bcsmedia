@@ -82,4 +82,4 @@ production:
   <<: *default
   database: bcsmedia_production
   username: rails
-  password: 719batres
+  password: 28e23240710f0a4992b994659e702390
