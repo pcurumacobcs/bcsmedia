@@ -10,10 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_30_205859) do
+ActiveRecord::Schema.define(version: 2019_05_30_232053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "permissions", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description"
+    t.string "slug", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_permissions_on_name", unique: true
+    t.index ["slug"], name: "index_permissions_on_slug", unique: true
+  end
+
+  create_table "role_permissions", force: :cascade do |t|
+    t.bigint "permission_id"
+    t.bigint "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["permission_id"], name: "index_role_permissions_on_permission_id"
+    t.index ["role_id"], name: "index_role_permissions_on_role_id"
+  end
+
+  create_table "role_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_role_users_on_role_id"
+    t.index ["user_id"], name: "index_role_users_on_user_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description"
+    t.string "slug", null: false
+    t.integer "lavel", null: false
+    t.integer "status", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_roles_on_name", unique: true
+    t.index ["slug"], name: "index_roles_on_slug", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
@@ -28,4 +68,8 @@ ActiveRecord::Schema.define(version: 2019_05_30_205859) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "role_permissions", "permissions"
+  add_foreign_key "role_permissions", "roles"
+  add_foreign_key "role_users", "roles"
+  add_foreign_key "role_users", "users"
 end
