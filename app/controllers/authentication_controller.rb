@@ -1,6 +1,17 @@
 class AuthenticationController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :authorize_request, except: :login
+  before_action :authorize_request, except: [:login, :register]
+
+  # POST /auth/register
+  def register
+    @user = User.new(register_params)
+    if @user.save
+      render json: @user, status: :created
+    else
+      render json: { errors: @user.errors.full_messages },
+             status: :unprocessable_entity
+    end
+  end
 
   # POST /auth/login
   def login
@@ -19,5 +30,11 @@ class AuthenticationController < ApplicationController
 
   def login_params
     params.permit(:email, :password)
+  end
+
+  def register_params
+    params.permit(
+      :name, :last_name, :username, :email, :password, :password_confirmation
+    )
   end
 end
