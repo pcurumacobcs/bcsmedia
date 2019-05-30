@@ -1,4 +1,4 @@
-class Api::V1::UsersController < ApplicationController
+class Api::V1::ApiController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -14,9 +14,9 @@ class Api::V1::UsersController < ApplicationController
   def show
     if @user.nil?
       render json: {
-        'message': 'the resource doesn\'t exist',
-        'status': 0
-        }, status: 404
+               'message': 'the resource doesn\'t exist',
+               'status': 0,
+             }, status: 404
     else
       render json: @user
     end
@@ -38,7 +38,7 @@ class Api::V1::UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user, notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -52,7 +52,7 @@ class Api::V1::UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -66,21 +66,22 @@ class Api::V1::UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-      rescue ActiveRecord::RecordNotFound => e
-        @user = nil
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:name, :last_name, :username, :email, :password_digest, :status)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  rescue ActiveRecord::RecordNotFound => e
+    @user = nil
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:name, :last_name, :username, :email, :password_digest, :status)
+  end
 end
