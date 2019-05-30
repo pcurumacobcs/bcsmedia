@@ -4,17 +4,22 @@ Rails.application.routes.draw do
   # Home view for backend
   root to: "home#index"
 
-  # namespace :api do
-  #   namespace :v1 do
-  #     resources :users
-  #   end
-  # end
-
-  resources :users, param: :_username, only: [:create]
   # JWT
   # Register
   post "/auth/register", to: "authentication#register"
   # Login...
   post "/auth/login", to: "authentication#login"
-  get "/*a", to: "application#not_found"
+  # get "/*a", to: "application#not_found"
+  # end JWT
+
+  namespace :api do
+    namespace :v1 do
+      # Users
+      get "users", to: "users#get_users"
+    end
+  end
 end
+
+# If you want any of this routes, must be in Rails.application.routes.draw do
+
+# resources :users, param: :_username, only: [:create]
