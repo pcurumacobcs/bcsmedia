@@ -4,7 +4,7 @@ class Api::V1::LocationNearbyPlaceTagsController < ApplicationController
   # find
   before_action :find_location_np_tag, :only => [:destroy]
 
-  # POST /locations/business_type
+  # POST /locations/nearby_place_tag
   def create
     @location_np_tag = LocationNearbyPlaceTag.new(location_np_tag_params)
 
@@ -13,7 +13,7 @@ class Api::V1::LocationNearbyPlaceTagsController < ApplicationController
     end
   end
 
-  # DELETE /locations/business_type
+  # DELETE /locations/nearby_place_tag
   def destroy
     unless @location_np_tag.destroy
       render json: { errors: @location_np_tag.errors.full_messages },
@@ -25,7 +25,7 @@ class Api::V1::LocationNearbyPlaceTagsController < ApplicationController
 
   private
 
-  # find locations business_type
+  # find locations nearby_place_tag
   def find_location_np_tag
     @location_np_tag = LocationNearbyPlaceTag.where(location_id: params[:location_id], nearby_place_tag_id: params[:nearby_place_tag_id]).first
     if @location_np_tag.nil?
@@ -35,7 +35,7 @@ class Api::V1::LocationNearbyPlaceTagsController < ApplicationController
     resource_not_found
   end
 
-  # params locations business_type
+  # params locations nearby_place_tag
   def location_np_tag_params
     params.permit(
       :location_id,

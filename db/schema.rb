@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_31_215441) do
+ActiveRecord::Schema.define(version: 2019_05_31_223100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,15 @@ ActiveRecord::Schema.define(version: 2019_05_31_215441) do
     t.datetime "updated_at", null: false
     t.index ["location_id"], name: "index_location_nearby_place_tags_on_location_id"
     t.index ["nearby_place_tag_id"], name: "index_location_nearby_place_tags_on_nearby_place_tag_id"
+  end
+
+  create_table "location_operators", force: :cascade do |t|
+    t.bigint "location_id"
+    t.bigint "operator_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_location_operators_on_location_id"
+    t.index ["operator_id"], name: "index_location_operators_on_operator_id"
   end
 
   create_table "location_types", force: :cascade do |t|
@@ -139,6 +148,8 @@ ActiveRecord::Schema.define(version: 2019_05_31_215441) do
   add_foreign_key "location_business_types", "locations", on_delete: :cascade
   add_foreign_key "location_nearby_place_tags", "locations", on_delete: :cascade
   add_foreign_key "location_nearby_place_tags", "nearby_place_tags", on_delete: :cascade
+  add_foreign_key "location_operators", "locations", on_delete: :cascade
+  add_foreign_key "location_operators", "operators", on_delete: :cascade
   add_foreign_key "locations", "location_types"
   add_foreign_key "role_permissions", "permissions"
   add_foreign_key "role_permissions", "roles"
