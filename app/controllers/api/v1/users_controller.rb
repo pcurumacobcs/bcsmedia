@@ -5,6 +5,10 @@ class Api::V1::UsersController < ApplicationController
     @users = User.all
 
     # render json: @users
-    render json: { 'data': @users, 'status': 1 }
+    if !@types.any?
+      resource_not_found
+    else
+      render json: { 'data': @users, 'status': 1 }
+    end
   end
 end

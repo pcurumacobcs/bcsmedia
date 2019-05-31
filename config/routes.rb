@@ -16,6 +16,12 @@ Rails.application.routes.draw do
     namespace :v1 do
       # Users
       get "users", to: "users#get_users"
+
+      # Location Types
+      get "locations/types", to: "locations_types#get_locations_types"
+      post "locations/types", to: "locations_types#create"
+      put "locations/types", to: "locations_types#update"
+      delete "locations/types", to: "locations_types#destroy"
     end
   end
 end
