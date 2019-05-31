@@ -16,7 +16,7 @@ class Api::V1::LocationBusinessTypesController < ApplicationController
   # DELETE /locations/business_type
   def destroy
     unless @location_bt.destroy
-      render json: { errors: @user.errors.full_messages },
+      render json: { errors: @location_bt.errors.full_messages },
              status: :unprocessable_entity
     else
       resource_deleted
@@ -27,7 +27,10 @@ class Api::V1::LocationBusinessTypesController < ApplicationController
 
   # find locations business_type
   def find_location_bt
-    @location_bt = LocationBusinessType.find(params[:id])
+    @location_bt = LocationBusinessType.where(location_id: params[:location_id], business_type_id: params[:business_type_id]).first
+    if @location_bt.nil?
+      resource_not_found
+    end
   rescue ActiveRecord::RecordNotFound
     resource_not_found
   end
