@@ -6,6 +6,12 @@ class AuthenticationController < ApplicationController
   def register
     @user = User.new(register_params)
     if @user.save
+      role_user = RoleUser.new(
+        user_id: @user.id,
+        role_id: 1, # set default Admin
+      )
+      role_user.save
+
       render json: @user, status: :created
     else
       render json: { errors: @user.errors.full_messages },

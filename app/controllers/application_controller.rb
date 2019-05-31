@@ -15,4 +15,21 @@ class ApplicationController < ActionController::Base
       render json: { errors: e.message }, status: :unauthorized
     end
   end
+
+  # responses functions
+  # 404 NOT FOUND
+  def resource_not_found
+    render json: {
+      'message': 'the resource doesn\'t exist',
+      'status': 0,
+    }, status: 404
+  end
+
+  # Deleted resource
+  def resource_deleted
+    render json: {
+      'message': "resource successfully deleted",
+      'status': 1,
+    }, status: 200
+  end
 end
