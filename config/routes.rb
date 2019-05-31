@@ -40,6 +40,12 @@ Rails.application.routes.draw do
       post "locations/operators", to: "operators#create"
       put "locations/operators", to: "operators#update"
       delete "locations/operators", to: "operators#destroy"
+
+      # Locations
+      get "locations", to: "locations#get_locations"
+      post "locations", to: "locations#create"
+      put "locations", to: "locations#update"
+      delete "locations", to: "locations#destroy"
     end
   end
 end
