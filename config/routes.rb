@@ -24,22 +24,22 @@ Rails.application.routes.draw do
       delete "locations/types", to: "locations_types#destroy"
 
       # Business Types
-      get "locations/business_types", to: "business_types#get_business_types"
-      post "locations/business_types", to: "business_types#create"
-      put "locations/business_types", to: "business_types#update"
-      delete "locations/business_types", to: "business_types#destroy"
+      get "business_types", to: "business_types#get_business_types"
+      post "business_types", to: "business_types#create"
+      put "business_types", to: "business_types#update"
+      delete "business_types", to: "business_types#destroy"
 
       # Nearby Place Tags
-      get "locations/nearby_place_tag", to: "nearby_place_tag#get_nearby_place_tag"
-      post "locations/nearby_place_tag", to: "nearby_place_tag#create"
-      put "locations/nearby_place_tag", to: "nearby_place_tag#update"
-      delete "locations/nearby_place_tag", to: "nearby_place_tag#destroy"
+      get "nearby_place_tag", to: "nearby_place_tag#get_nearby_place_tag"
+      post "nearby_place_tag", to: "nearby_place_tag#create"
+      put "nearby_place_tag", to: "nearby_place_tag#update"
+      delete "nearby_place_tag", to: "nearby_place_tag#destroy"
 
       # Operators
-      get "locations/operators", to: "operators#get_operators"
-      post "locations/operators", to: "operators#create"
-      put "locations/operators", to: "operators#update"
-      delete "locations/operators", to: "operators#destroy"
+      get "operators", to: "operators#get_operators"
+      post "operators", to: "operators#create"
+      put "operators", to: "operators#update"
+      delete "operators", to: "operators#destroy"
 
       # Locations
       get "locations", to: "locations#get_locations"
