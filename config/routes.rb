@@ -22,6 +22,12 @@ Rails.application.routes.draw do
       post "locations/types", to: "locations_types#create"
       put "locations/types", to: "locations_types#update"
       delete "locations/types", to: "locations_types#destroy"
+
+      # Business Types
+      get "locations/business_types", to: "business_types#get_business_types"
+      post "locations/business_types", to: "business_types#create"
+      put "locations/business_types", to: "business_types#update"
+      delete "locations/business_types", to: "business_types#destroy"
     end
   end
 end
