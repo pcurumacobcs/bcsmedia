@@ -34,6 +34,12 @@ Rails.application.routes.draw do
       post "locations/nearby_place_tag", to: "nearby_place_tag#create"
       put "locations/nearby_place_tag", to: "nearby_place_tag#update"
       delete "locations/nearby_place_tag", to: "nearby_place_tag#destroy"
+
+      # Operators
+      get "locations/operators", to: "operators#get_operators"
+      post "locations/operators", to: "operators#create"
+      put "locations/operators", to: "operators#update"
+      delete "locations/operators", to: "operators#destroy"
     end
   end
 end
