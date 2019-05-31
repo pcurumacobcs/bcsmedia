@@ -23,11 +23,20 @@ Rails.application.routes.draw do
       put "locations/types", to: "locations_types#update"
       delete "locations/types", to: "locations_types#destroy"
 
+      # Locations
+      get "locations", to: "locations#get_locations"
+      post "locations", to: "locations#create"
+      put "locations", to: "locations#update"
+      delete "locations", to: "locations#destroy"
+
       # Business Types
       get "business_types", to: "business_types#get_business_types"
       post "business_types", to: "business_types#create"
       put "business_types", to: "business_types#update"
       delete "business_types", to: "business_types#destroy"
+      # Location Business Types
+      post "locations/business_type", to: "location_business_types#create"
+      delete "locations/business_type", to: "location_business_types#destroy"
 
       # Nearby Place Tags
       get "nearby_place_tag", to: "nearby_place_tag#get_nearby_place_tag"
@@ -40,12 +49,6 @@ Rails.application.routes.draw do
       post "operators", to: "operators#create"
       put "operators", to: "operators#update"
       delete "operators", to: "operators#destroy"
-
-      # Locations
-      get "locations", to: "locations#get_locations"
-      post "locations", to: "locations#create"
-      put "locations", to: "locations#update"
-      delete "locations", to: "locations#destroy"
     end
   end
 end
