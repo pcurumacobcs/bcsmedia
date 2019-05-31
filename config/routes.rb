@@ -28,6 +28,12 @@ Rails.application.routes.draw do
       post "locations/business_types", to: "business_types#create"
       put "locations/business_types", to: "business_types#update"
       delete "locations/business_types", to: "business_types#destroy"
+
+      # Nearby Place Tags
+      get "locations/nearby_place_tag", to: "nearby_place_tag#get_nearby_place_tag"
+      post "locations/nearby_place_tag", to: "nearby_place_tag#create"
+      put "locations/nearby_place_tag", to: "nearby_place_tag#update"
+      delete "locations/nearby_place_tag", to: "nearby_place_tag#destroy"
     end
   end
 end

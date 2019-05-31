@@ -46,7 +46,7 @@ class Api::V1::BusinessTypesController < ApplicationController
 
   private
 
-  # find locations type
+  # find locations business type
   def find_business_type
     @business = BusinessType.find(params[:id])
   rescue ActiveRecord::RecordNotFound
