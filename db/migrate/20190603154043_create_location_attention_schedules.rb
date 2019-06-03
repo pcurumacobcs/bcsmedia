@@ -5,8 +5,6 @@ class CreateLocationAttentionSchedules < ActiveRecord::Migration[5.2]
       t.integer :day, null: false
       t.column :start_hour, :time, null: false, default: "00:00"
       t.column :end_hour, :time, null: false, default: "23:59"
-      # t.time :start_hour, null: false, default: "00:00"
-      # t.time :end_hour, null: false, default: "23:59"
 
       t.timestamps
     end

@@ -63,11 +63,16 @@ Rails.application.routes.draw do
       delete "locations/installation", to: "location_installation_dates#destroy"
 
       # Location attention Schedule
-      #
-      get "locations/attention_schedule", to: "location_attention_schedule#get_attention_schedule" # you can pass a body with param :id for search all installations from a single location
+      get "locations/attention_schedule", to: "location_attention_schedule#get_attention_schedule" # you can pass a body with param :id for search all attention schedule from a single location
       post "locations/attention_schedule", to: "location_attention_schedule#create"
       put "locations/attention_schedule", to: "location_attention_schedule#update"
       delete "locations/attention_schedule", to: "location_attention_schedule#destroy"
+
+      # Location attention Schedule
+      get "locations/phones", to: "location_phones#get_phone_numbers" # you can pass a body with param :id for search all phone numbers from a single location
+      post "locations/phones", to: "location_phones#create"
+      put "locations/phones", to: "location_phones#update"
+      delete "locations/phones", to: "location_phones#destroy"
     end
   end
 end
