@@ -68,11 +68,17 @@ Rails.application.routes.draw do
       put "locations/attention_schedule", to: "location_attention_schedule#update"
       delete "locations/attention_schedule", to: "location_attention_schedule#destroy"
 
-      # Location attention Schedule
+      # Location phone numbers
       get "locations/phones", to: "location_phones#get_phone_numbers" # you can pass a body with param :id for search all phone numbers from a single location
       post "locations/phones", to: "location_phones#create"
       put "locations/phones", to: "location_phones#update"
       delete "locations/phones", to: "location_phones#destroy"
+
+      # Location images
+      get "locations/images", to: "location_images#get_images" # you can pass a body with param :id for search all images from a single location
+      post "locations/images", to: "location_images#create"
+      put "locations/images", to: "location_images#update"
+      delete "locations/images", to: "location_images#destroy"
     end
   end
 end

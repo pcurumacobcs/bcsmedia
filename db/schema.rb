@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_03_170106) do
+ActiveRecord::Schema.define(version: 2019_06_03_174126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 2019_06_03_170106) do
     t.datetime "updated_at", null: false
     t.index ["business_type_id"], name: "index_location_business_types_on_business_type_id"
     t.index ["location_id"], name: "index_location_business_types_on_location_id"
+  end
+
+  create_table "location_images", force: :cascade do |t|
+    t.bigint "location_id"
+    t.string "url_image", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_location_images_on_location_id"
   end
 
   create_table "location_installation_dates", force: :cascade do |t|
@@ -174,6 +182,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_170106) do
   add_foreign_key "location_attention_schedules", "locations", on_delete: :cascade
   add_foreign_key "location_business_types", "business_types", on_delete: :cascade
   add_foreign_key "location_business_types", "locations", on_delete: :cascade
+  add_foreign_key "location_images", "locations", on_delete: :cascade
   add_foreign_key "location_installation_dates", "locations", on_delete: :cascade
   add_foreign_key "location_nearby_place_tags", "locations", on_delete: :cascade
   add_foreign_key "location_nearby_place_tags", "nearby_place_tags", on_delete: :cascade
