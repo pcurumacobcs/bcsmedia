@@ -81,10 +81,16 @@ Rails.application.routes.draw do
       delete "locations/images", to: "location_images#destroy"
 
       # Location Brands
-      get "locations/brands", to: "screen_brands#get_screen_brands"
-      post "locations/brands", to: "screen_brands#create"
-      put "locations/brands", to: "screen_brands#update"
-      delete "locations/brands", to: "screen_brands#destroy"
+      get "screens/brands", to: "screen_brands#get_screen_brands"
+      post "screens/brands", to: "screen_brands#create"
+      put "screens/brands", to: "screen_brands#update"
+      delete "screens/brands", to: "screen_brands#destroy"
+
+      # Location Brands
+      get "screens/types", to: "screen_types#get_screen_types"
+      post "screens/types", to: "screen_types#create"
+      put "screens/types", to: "screen_types#update"
+      delete "screens/types", to: "screen_types#destroy"
     end
   end
 end
