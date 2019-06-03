@@ -55,6 +55,30 @@ Rails.application.routes.draw do
       # Location Nearby Place Tags
       post "locations/operators", to: "location_operators#create"
       delete "locations/operators", to: "location_operators#destroy"
+
+      # Installation Dates
+      get "locations/installation", to: "location_installation_dates#get_locations_installation" # you can pass a body with param :id for search all installations from a single location
+      post "locations/installation", to: "location_installation_dates#create"
+      put "locations/installation", to: "location_installation_dates#update"
+      delete "locations/installation", to: "location_installation_dates#destroy"
+
+      # Location attention Schedule
+      get "locations/attention_schedule", to: "location_attention_schedule#get_attention_schedule" # you can pass a body with param :id for search all attention schedule from a single location
+      post "locations/attention_schedule", to: "location_attention_schedule#create"
+      put "locations/attention_schedule", to: "location_attention_schedule#update"
+      delete "locations/attention_schedule", to: "location_attention_schedule#destroy"
+
+      # Location phone numbers
+      get "locations/phones", to: "location_phones#get_phone_numbers" # you can pass a body with param :id for search all phone numbers from a single location
+      post "locations/phones", to: "location_phones#create"
+      put "locations/phones", to: "location_phones#update"
+      delete "locations/phones", to: "location_phones#destroy"
+
+      # Location images
+      get "locations/images", to: "location_images#get_images" # you can pass a body with param :id for search all images from a single location
+      post "locations/images", to: "location_images#create"
+      put "locations/images", to: "location_images#update"
+      delete "locations/images", to: "location_images#destroy"
     end
   end
 end

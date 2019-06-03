@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location: one
+  day: 1
+  start_hour: 2019-06-03 09:40:43
+  end_hour: 2019-06-03 09:40:43
+
+two:
+  location: two
+  day: 1
+  start_hour: 2019-06-03 09:40:43
+  end_hour: 2019-06-03 09:40:43

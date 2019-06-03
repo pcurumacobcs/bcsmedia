@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_31_223100) do
+ActiveRecord::Schema.define(version: 2019_06_03_174126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 2019_05_31_223100) do
     t.index ["name"], name: "index_business_types_on_name", unique: true
   end
 
+  create_table "location_attention_schedules", force: :cascade do |t|
+    t.bigint "location_id"
+    t.integer "day", null: false
+    t.time "start_hour", default: "2000-01-01 00:00:00", null: false
+    t.time "end_hour", default: "2000-01-01 23:59:00", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_location_attention_schedules_on_location_id"
+  end
+
   create_table "location_business_types", force: :cascade do |t|
     t.bigint "location_id"
     t.bigint "business_type_id"
@@ -30,6 +40,23 @@ ActiveRecord::Schema.define(version: 2019_05_31_223100) do
     t.datetime "updated_at", null: false
     t.index ["business_type_id"], name: "index_location_business_types_on_business_type_id"
     t.index ["location_id"], name: "index_location_business_types_on_location_id"
+  end
+
+  create_table "location_images", force: :cascade do |t|
+    t.bigint "location_id"
+    t.string "url_image", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_location_images_on_location_id"
+  end
+
+  create_table "location_installation_dates", force: :cascade do |t|
+    t.bigint "location_id"
+    t.datetime "date_time", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.text "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_location_installation_dates_on_location_id"
   end
 
   create_table "location_nearby_place_tags", force: :cascade do |t|
@@ -48,6 +75,14 @@ ActiveRecord::Schema.define(version: 2019_05_31_223100) do
     t.datetime "updated_at", null: false
     t.index ["location_id"], name: "index_location_operators_on_location_id"
     t.index ["operator_id"], name: "index_location_operators_on_operator_id"
+  end
+
+  create_table "location_phones", force: :cascade do |t|
+    t.bigint "location_id"
+    t.string "phone_number", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_location_phones_on_location_id"
   end
 
   create_table "location_types", force: :cascade do |t|
@@ -144,12 +179,16 @@ ActiveRecord::Schema.define(version: 2019_05_31_223100) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "location_attention_schedules", "locations", on_delete: :cascade
   add_foreign_key "location_business_types", "business_types", on_delete: :cascade
   add_foreign_key "location_business_types", "locations", on_delete: :cascade
+  add_foreign_key "location_images", "locations", on_delete: :cascade
+  add_foreign_key "location_installation_dates", "locations", on_delete: :cascade
   add_foreign_key "location_nearby_place_tags", "locations", on_delete: :cascade
   add_foreign_key "location_nearby_place_tags", "nearby_place_tags", on_delete: :cascade
   add_foreign_key "location_operators", "locations", on_delete: :cascade
   add_foreign_key "location_operators", "operators", on_delete: :cascade
+  add_foreign_key "location_phones", "locations"
   add_foreign_key "locations", "location_types"
   add_foreign_key "role_permissions", "permissions"
   add_foreign_key "role_permissions", "roles"
