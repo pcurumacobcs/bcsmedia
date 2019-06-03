@@ -1,0 +1,2 @@
+class ScreenBrand < ApplicationRecord
+end

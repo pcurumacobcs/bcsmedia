@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  screen_type: one
+  screen_brand: one
+  location: one
+  code: MyString
+  model: MyString
+  orientation: MyString
+  size_inches: MyString
+  description: MyString
+  status: 1
+
+two:
+  screen_type: two
+  screen_brand: two
+  location: two
+  code: MyString
+  model: MyString
+  orientation: MyString
+  size_inches: MyString
+  description: MyString
+  status: 1

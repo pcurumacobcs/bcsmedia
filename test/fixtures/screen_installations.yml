@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  screen: one
+  name: MyString
+  date: 2019-06-03 13:02:25
+  description: MyString
+
+two:
+  screen: two
+  name: MyString
+  date: 2019-06-03 13:02:25
+  description: MyString
