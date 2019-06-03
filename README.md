@@ -108,3 +108,63 @@ All these requests must be **HTTP** and return answers in **JSON** format:
 ---
 
 ## Locations:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+* ### Locations Types:
+
+* **GET** - */locations/types*
+    
+    * Response:
+        ```JSON
+        {
+            "data": [],
+            "status": 1
+        }
+        ```
+
+* **POST** - */locations/types*
+
+    * Body:
+        ```JSON
+        {
+            "name": "string | unique"
+        }
+        ```
+
+    * Response:
+
+        * Object created.
+
+* **PUT** - */locations/types*
+
+    * Body:
+        ```JSON
+        {
+            "id": "location_type_id",
+            "name": "string | unique"
+        }
+        ```
+
+    * Response:
+
+        * Object updated.
+
+* **DELETE** - */locations/types*
+
+    * Body:
+        ```JSON
+        {
+            "id": "location_type_id"
+        }
+        ```
+
+    * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
