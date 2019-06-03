@@ -27,7 +27,7 @@ class Api::V1::BusinessTypesController < ApplicationController
   # PUT /locations/business_types
   def update
     unless @business.update(business_types_params)
-      render json: { errors: @user.errors.full_messages },
+      render json: { errors: @business.errors.full_messages },
              status: :unprocessable_entity
     else
       render json: @business
@@ -37,7 +37,7 @@ class Api::V1::BusinessTypesController < ApplicationController
   # DELETE /locations/business_types
   def destroy
     unless @business.destroy
-      render json: { errors: @user.errors.full_messages },
+      render json: { errors: @business.errors.full_messages },
              status: :unprocessable_entity
     else
       resource_deleted

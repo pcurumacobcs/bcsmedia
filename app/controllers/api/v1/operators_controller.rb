@@ -27,7 +27,7 @@ class Api::V1::OperatorsController < ApplicationController
   # PUT /locations/operators
   def update
     unless @operator.update(operators_params)
-      render json: { errors: @user.errors.full_messages },
+      render json: { errors: @operator.errors.full_messages },
              status: :unprocessable_entity
     else
       render json: @operator
@@ -37,7 +37,7 @@ class Api::V1::OperatorsController < ApplicationController
   # DELETE /locations/operators
   def destroy
     unless @operator.destroy
-      render json: { errors: @user.errors.full_messages },
+      render json: { errors: @operator.errors.full_messages },
              status: :unprocessable_entity
     else
       resource_deleted

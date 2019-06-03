@@ -22,7 +22,6 @@ class Api::V1::LocationInstallationDatesController < ApplicationController
 
   # POST /locations/installation
   def create
-    # render json: { 'date_time': params[:date_time] }
     @location_installation = LocationInstallationDate.new(location_installations_params)
 
     if @location_installation.save
@@ -33,7 +32,7 @@ class Api::V1::LocationInstallationDatesController < ApplicationController
   # PUT /locations/installation
   def update
     unless @location_installation.update(location_installations_params)
-      render json: { errors: @user.errors.full_messages },
+      render json: { errors: @location_installation.errors.full_messages },
              status: :unprocessable_entity
     else
       render json: @location_installation
@@ -43,7 +42,7 @@ class Api::V1::LocationInstallationDatesController < ApplicationController
   # DELETE /locations/installation
   def destroy
     unless @location_installation.destroy
-      render json: { errors: @user.errors.full_messages },
+      render json: { errors: @location_installation.errors.full_messages },
              status: :unprocessable_entity
     else
       resource_deleted

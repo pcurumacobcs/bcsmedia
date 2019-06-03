@@ -27,7 +27,7 @@ class Api::V1::NearbyPlaceTagController < ApplicationController
   # PUT /locations/nearby_place_tag
   def update
     unless @nearby_places.update(nearby_place_tag_params)
-      render json: { errors: @user.errors.full_messages },
+      render json: { errors: @nearby_places.errors.full_messages },
              status: :unprocessable_entity
     else
       render json: @nearby_places
@@ -37,7 +37,7 @@ class Api::V1::NearbyPlaceTagController < ApplicationController
   # DELETE /locations/nearby_place_tag
   def destroy
     unless @nearby_places.destroy
-      render json: { errors: @user.errors.full_messages },
+      render json: { errors: @nearby_places.errors.full_messages },
              status: :unprocessable_entity
     else
       resource_deleted
