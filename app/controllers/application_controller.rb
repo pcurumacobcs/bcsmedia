@@ -28,8 +28,8 @@ class ApplicationController < ActionController::Base
   # Deleted resource
   def resource_deleted
     render json: {
-      'message': "resource successfully deleted",
-      'status': 1,
+      "message": "resource successfully deleted",
+      "status": 1,
     }, status: 200
   end
 end
