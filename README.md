@@ -22,7 +22,12 @@ All these requests must be **HTTP** and return answers in **JSON** format:
 
     * Header:
 
-        * ***Content-Type:*** application/json
+        ```JSON
+        {
+            "Content-Type": "application/json"
+        }
+        ```
+        <!-- * ***Content-Type:*** application/json -->
     
     * Body:
 
@@ -34,12 +39,12 @@ All these requests must be **HTTP** and return answers in **JSON** format:
         * ***password_confirm:*** string, required -->
         ```JSON
         {
-            "name": string | required,
-            "last_name": string | required,
-            "username": string | required,
-            "email": string | required,
-            "password": string | required,
-            "password_confirm": string | required,
+            "name": "string | required",
+            "last_name": "string | required",
+            "username": "string | required",
+            "email": "string | required",
+            "password": "string | required",
+            "password_confirm": "string | required",
         }
         ```
 
@@ -55,8 +60,8 @@ All these requests must be **HTTP** and return answers in **JSON** format:
         * ***password:*** string, required  -->
         ```JSON
         {
-            "email": string | required,
-            "password" string | required
+            "email": "string | required",
+            "password": "string | required"
         }
         ```
 
@@ -67,9 +72,9 @@ All these requests must be **HTTP** and return answers in **JSON** format:
         * ***username:*** string -->
         ```JSON
         {
-            "token": string,
-            "exp": datetime,
-            "username": string
+            "token": "string",
+            "exp": "datetime | yyyy-mm-dd HH-MM",
+            "username": "string"
         }
         ```
 
@@ -79,7 +84,7 @@ All these requests must be **HTTP** and return answers in **JSON** format:
 
 **Prefix:** */api/v1*
 
-* **POST** - */users*
+* **GET** - */users*
     
     * Header:
 
