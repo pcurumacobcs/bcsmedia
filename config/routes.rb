@@ -55,6 +55,12 @@ Rails.application.routes.draw do
       # Location Nearby Place Tags
       post "locations/operators", to: "location_operators#create"
       delete "locations/operators", to: "location_operators#destroy"
+
+      # Installation Dates
+      get "locations/installation", to: "location_installation_dates#get_locations_installation" # you can pass a body with param :id for search all installations from a single location
+      post "locations/installation", to: "location_installation_dates#create"
+      put "locations/installation", to: "location_installation_dates#update"
+      delete "locations/installation", to: "location_installation_dates#destroy"
     end
   end
 end
