@@ -91,6 +91,12 @@ Rails.application.routes.draw do
       post "screens/types", to: "screen_types#create"
       put "screens/types", to: "screen_types#update"
       delete "screens/types", to: "screen_types#destroy"
+
+      # Location Brands
+      get "screens", to: "screens#get_screens" # you can pass a body with param :location_id for search all screens from a single location
+      post "screens", to: "screens#create"
+      put "screens", to: "screens#update"
+      delete "screens", to: "screens#destroy"
     end
   end
 end
