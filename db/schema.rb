@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_04_204714) do
+ActiveRecord::Schema.define(version: 2019_06_04_213521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -221,6 +221,15 @@ ActiveRecord::Schema.define(version: 2019_06_04_204714) do
     t.index ["screen_type_id"], name: "index_screens_on_screen_type_id"
   end
 
+  create_table "user_customers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_user_customers_on_customer_id"
+    t.index ["user_id"], name: "index_user_customers_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "last_name", null: false
@@ -253,4 +262,6 @@ ActiveRecord::Schema.define(version: 2019_06_04_204714) do
   add_foreign_key "screens", "locations"
   add_foreign_key "screens", "screen_brands"
   add_foreign_key "screens", "screen_types"
+  add_foreign_key "user_customers", "customers", on_delete: :cascade
+  add_foreign_key "user_customers", "users", on_delete: :cascade
 end

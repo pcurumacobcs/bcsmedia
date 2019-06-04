@@ -105,10 +105,14 @@ Rails.application.routes.draw do
       delete "screens/installations", to: "screen_installations#destroy"
 
       # Customers
-      get "customers", to: "customers#get_customers" # you can pass a body with param :screen_id for search all installations from a single screen
+      get "customers", to: "customers#get_customers"
       post "customers", to: "customers#create"
       put "customers", to: "customers#update"
       delete "customers", to: "customers#destroy"
+
+      # Customers
+      post "users/customers", to: "user_customers#create"
+      delete "users/customers", to: "user_customers#destroy"
     end
   end
 end
