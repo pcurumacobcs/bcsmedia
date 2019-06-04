@@ -641,7 +641,7 @@ In all request **Header:**
 
 ---
 
-## Locations Installation Attention Schedule:
+## Locations Attention Schedule:
 
 **Prefix:** */api/v1*
 
