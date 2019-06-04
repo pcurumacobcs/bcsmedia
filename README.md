@@ -923,3 +923,65 @@ In all request **Header:**
     ```
 
 * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Screen Types:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */screens/types*
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */screens/types*
+
+* Body:
+    ```JSON
+    {
+        "name": "string | required | unique"
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */screens/types*
+
+* Body:
+    ```JSON
+    {
+        "id": "screen_types_id",
+        "name": "string | required | unique"
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */screens/types*
+
+* Body:
+    ```JSON
+    {
+        "id": "screen_types_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
