@@ -563,3 +563,76 @@ In all request **Header:**
     ```
 
 * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Locations Installation Dates:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */locations/installation*
+
+* Body:
+    ```JSON
+    {
+        "id": "integer | optional | location_id",
+    }
+    ```
+    
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */locations/installation*
+
+* Body:
+    ```JSON
+    {
+        "location_id": "integer | required | location_id",
+        "date_time": "datetime (yyyy-mm-dd h:i) | required",
+        "comments": "string | optional"
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */locations/installation*
+
+* Body:
+    ```JSON
+    {
+        "id": "location_installation_dates_id",
+        "location_id": "integer | required | location_id",
+        "date_time": "datetime (yyyy-mm-dd h:i) | required",
+        "comments": "string | optional"
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */locations/installation*
+
+* Body:
+    ```JSON
+    {
+        "id": "location_installation_dates_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
