@@ -446,7 +446,7 @@ In all request **Header:**
 
 ---
 
-## Location Business Types:
+## Locations Business Types:
 
 **Prefix:** */api/v1*
 
@@ -458,7 +458,7 @@ In all request **Header:**
     }
     ```
 
-**POST** - */locations*
+**POST** - */locations/business_type*
 
 * Body:
     ```JSON
@@ -472,13 +472,53 @@ In all request **Header:**
 
     * Object created.
 
-**DELETE** - */locations*
+**DELETE** - */locations/business_type*
 
 * Body:
     ```JSON
     {
         "location_id": "integer | required | location_id",
         "business_type_id": "integer | required | business_type_id",
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Locations Nearby Places Tags:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**POST** - */locations/nearby_place_tag*
+
+* Body:
+    ```JSON
+    {
+        "location_id": "integer | required | location_id",
+        "nearby_place_tag_id": "integer | required | nearby_place_tag_id",
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**DELETE** - */locations/nearby_place_tag*
+
+* Body:
+    ```JSON
+    {
+        "location_id": "integer | required | location_id",
+        "nearby_place_tag_id": "integer | required | nearby_place_tag_id",
     }
     ```
 
