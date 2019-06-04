@@ -985,3 +985,91 @@ In all request **Header:**
     ```
 
 * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Screens:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */screens*
+
+
+* Body:
+    ```JSON
+    {
+        "location_id": "integer | optional | location_id",
+    }
+    ```
+    
+    Note: if you pass the parameter *location_id*, you will receive the screens of that location. Otherwise, you will receive all the screens of all the locations.
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */screens*
+
+* Body:
+    ```JSON
+    {
+        "screen_type_id": "integer | required | screen_type_id",
+        "screen_brand_id": "integer | required | screen_brand_id",
+        "location_id": "integer | required | location_id",
+        "code": "string | required",
+        "model": "string | optional",
+        "sku": "string | optional",
+        "orientation": "string | optional",
+        "size_inches": "string | required",
+        "description": "string | optional",
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */screens*
+
+* Body:
+    ```JSON
+    {
+        "id": "screen_id",
+        "screen_type_id": "integer | required | screen_type_id",
+        "screen_brand_id": "integer | required | screen_brand_id",
+        "location_id": "integer | required | location_id",
+        "code": "string | required",
+        "model": "string | optional",
+        "sku": "string | optional",
+        "orientation": "string | optional",
+        "size_inches": "string | required",
+        "description": "string | optional",
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */screens*
+
+* Body:
+    ```JSON
+    {
+        "id": "screen_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
