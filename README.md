@@ -788,3 +788,76 @@ In all request **Header:**
     ```
 
 * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Locations Images:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */locations/images*
+
+* Body:
+    ```JSON
+    {
+        "id": "integer | optional | location_id",
+    }
+    ```
+    
+    Note: If you pass the parameter *id*, you will receive the images of that location. Otherwise, you will receive all the images of all the locations.
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */locations/images*
+
+* Body:
+    ```JSON
+    {
+        "location_id": "integer | required | location_id",
+        "url_image": "string | required"
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */locations/images*
+
+* Body:
+    ```JSON
+    {
+        "id": "location_images_id",
+        "location_id": "integer | required | location_id",
+        "url_image": "string | required"
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */locations/images*
+
+* Body:
+    ```JSON
+    {
+        "id": "location_images_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
