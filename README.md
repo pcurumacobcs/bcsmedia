@@ -1073,3 +1073,81 @@ In all request **Header:**
     ```
 
 * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Screen Installations:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */screens/installations*
+
+
+* Body:
+    ```JSON
+    {
+        "screen_id": "integer | optional | screen_id",
+    }
+    ```
+    
+    Note: if you pass the parameter *screen_id*, you will receive the screen installations of that screen. Otherwise, you will receive all the screen installations of all the screens.
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */screens/installations*
+
+* Body:
+    ```JSON
+    {
+        "screen_id": "integer | required | screen_id",
+        "name": "string | required",
+        "date": "datetime (yyyy-mm-dd hh:ii) | required",
+        "description": "string | optional"
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */screens/installations*
+
+* Body:
+    ```JSON
+    {
+        "id": "screen_installations_id",
+        "screen_id": "integer | required | screen_id",
+        "name": "string | required",
+        "date": "datetime (yyyy-mm-dd hh:ii) | required",
+        "description": "string | optional"
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */screens/installations*
+
+* Body:
+    ```JSON
+    {
+        "id": "screen_installations_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
