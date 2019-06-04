@@ -84,26 +84,26 @@ All these requests must be **HTTP** and return answers in **JSON** format.
 
 **Prefix:** */api/v1*
 
-* **GET** - */users*
+**GET** - */users*
     
-    * Header:
+* Header:
 
-        <!-- * ***Authorization:*** TOKEN
-        * ***Content-Type:*** application/json -->
-        ```JSON
-        {
-            "Authorization": "Token",
-            "Content-Type": "application/json"
-        }
-        ```
+    <!-- * ***Authorization:*** TOKEN
+    * ***Content-Type:*** application/json -->
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
 
-    * Response:
-        ```JSON
-        {
-            "data": [],
-            "status": 1
-        }
-        ```
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
 
 ---
 
@@ -857,6 +857,68 @@ In all request **Header:**
     ```JSON
     {
         "id": "location_images_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Screen Brands:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */screens/brands*
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */screens/brands*
+
+* Body:
+    ```JSON
+    {
+        "name": "string | required | unique"
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */screens/brands*
+
+* Body:
+    ```JSON
+    {
+        "id": "screen_brands_id",
+        "name": "string | required | unique"
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */screens/brands*
+
+* Body:
+    ```JSON
+    {
+        "id": "screen_brands_id"
     }
     ```
 
