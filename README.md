@@ -107,7 +107,7 @@ All these requests must be **HTTP** and return answers in **JSON** format.
 
 ---
 
-## Location Business Types:
+## Business Types:
 
 
 **Prefix:** */api/v1*
@@ -439,6 +439,46 @@ In all request **Header:**
     ```JSON
     {
         "id": "location_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Location Business Types:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**POST** - */locations*
+
+* Body:
+    ```JSON
+    {
+        "location_id": "integer | required | location_id",
+        "business_type_id": "integer | required | business_type_id",
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**DELETE** - */locations*
+
+* Body:
+    ```JSON
+    {
+        "location_id": "integer | required | location_id",
+        "business_type_id": "integer | required | business_type_id",
     }
     ```
 
