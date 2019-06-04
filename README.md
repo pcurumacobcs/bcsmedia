@@ -587,6 +587,8 @@ In all request **Header:**
     }
     ```
     
+    Note: If you pass the parameter *id*, you will receive the installation dates of that location. Otherwise, you will receive all the installation dates of all the locations.
+
 * Response:
     ```JSON
     {
@@ -632,6 +634,83 @@ In all request **Header:**
     ```JSON
     {
         "id": "location_installation_dates_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Locations Installation Attention Schedule:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */locations/attention_schedule*
+
+* Body:
+    ```JSON
+    {
+        "id": "integer | optional | location_id",
+    }
+    ```
+    
+    Note: If you pass the parameter *id*, you will receive the attention schedules of that location. Otherwise, you will receive all the attention schedules of all the locations.
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */locations/attention_schedule*
+
+* Body:
+    ```JSON
+    {
+        "location_id": "integer | required | location_id",
+        "day": "integer | required",
+        "start_hour": "time | required",
+        "end_hour": "time | required",
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */locations/attention_schedule*
+
+* Body:
+    ```JSON
+    {
+        "id": "location_attention_schedule_id",
+        "location_id": "integer | required | location_id",
+        "day": "integer | required",
+        "start_hour": "time | required",
+        "end_hour": "time | required",
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */locations/attention_schedule*
+
+* Body:
+    ```JSON
+    {
+        "id": "location_attention_schedule_id"
     }
     ```
 
