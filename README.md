@@ -523,3 +523,43 @@ In all request **Header:**
     ```
 
 * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Locations Operators:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**POST** - */locations/operators*
+
+* Body:
+    ```JSON
+    {
+        "location_id": "integer | required | location_id",
+        "operator_id": "integer | required | operator_id",
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**DELETE** - */locations/operators*
+
+* Body:
+    ```JSON
+    {
+        "location_id": "integer | required | location_id",
+        "operator_id": "integer | required | operator_id",
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
