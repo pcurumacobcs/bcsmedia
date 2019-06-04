@@ -12,9 +12,9 @@ About project:
 
 # API Documentation
 
-**Recommendation:** store the URL or IP of the web service to only play with the url of the services. 
+**Recommendation:** store the URL or IP of the web service to only play with the url of the services. iP server **167.99.163.67** (*bcs-media*).
 
-All these requests must be **HTTP** and return answers in **JSON** format:
+All these requests must be **HTTP** and return answers in **JSON** format. 
 
 ## Log In/Sign In:
 
@@ -107,7 +107,8 @@ All these requests must be **HTTP** and return answers in **JSON** format:
 
 ---
 
-## Locations:
+## Location Business Types:
+
 
 **Prefix:** */api/v1*
 
@@ -119,52 +120,175 @@ In all request **Header:**
     }
     ```
 
-* ### Locations Types:
-
-* **GET** - */locations/types*
+**GET** - */business_types*
     
-    * Response:
-        ```JSON
-        {
-            "data": [],
-            "status": 1
-        }
-        ```
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
 
-* **POST** - */locations/types*
+**POST** - */business_types*
 
-    * Body:
-        ```JSON
-        {
-            "name": "string | unique"
-        }
-        ```
+* Body:
+    ```JSON
+    {
+        "name": "string | required | unique",
+        "description": "string"
+    }
+    ```
 
-    * Response:
+* Response:
 
-        * Object created.
+    * Object created.
 
-* **PUT** - */locations/types*
+**PUT** - */business_types*
 
-    * Body:
-        ```JSON
-        {
-            "id": "location_type_id",
-            "name": "string | unique"
-        }
-        ```
+* Body:
+    ```JSON
+    {
+        "id": "location_type_id",
+        "name": "string | unique"
+    }
+    ```
 
-    * Response:
+* Response:
 
-        * Object updated.
+    * Object updated.
 
-* **DELETE** - */locations/types*
+**DELETE** - */business_types*
 
-    * Body:
-        ```JSON
-        {
-            "id": "location_type_id"
-        }
-        ```
+* Body:
+    ```JSON
+    {
+        "id": "location_type_id"
+    }
+    ```
 
-    * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Locations Types:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */locations/types*
+    
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */locations/types*
+
+* Body:
+    ```JSON
+    {
+        "name": "string | unique"
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */locations/types*
+
+* Body:
+    ```JSON
+    {
+        "id": "location_type_id",
+        "name": "string | unique"
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */locations/types*
+
+* Body:
+    ```JSON
+    {
+        "id": "location_type_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Nearby Places Tags:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */nearby_place_tag*
+    
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */nearby_place_tag*
+
+* Body:
+    ```JSON
+    {
+        "name": "string | unique"
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */nearby_place_tag*
+
+* Body:
+    ```JSON
+    {
+        "id": "nearby_place_tag_id",
+        "name": "string | unique"
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */nearby_place_tag*
+
+* Body:
+    ```JSON
+    {
+        "id": "nearby_place_tag_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
