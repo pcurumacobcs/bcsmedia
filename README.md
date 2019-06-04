@@ -715,3 +715,76 @@ In all request **Header:**
     ```
 
 * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Locations Phone Numbers:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */locations/phones*
+
+* Body:
+    ```JSON
+    {
+        "id": "integer | optional | location_id",
+    }
+    ```
+    
+    Note: if you pass the parameter *id*, you will receive the telephone numbers of that location. Otherwise, you will receive all the telephone numbers of all the locations.
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */locations/phones*
+
+* Body:
+    ```JSON
+    {
+        "location_id": "integer | required | location_id",
+        "phone_number": "string | required"
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */locations/phones*
+
+* Body:
+    ```JSON
+    {
+        "id": "location_phones_id",
+        "location_id": "integer | required | location_id",
+        "phone_number": "string | required"
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */locations/phones*
+
+* Body:
+    ```JSON
+    {
+        "id": "location_phones_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
