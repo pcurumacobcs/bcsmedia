@@ -292,3 +292,154 @@ In all request **Header:**
     ```
 
 * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Operators:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */operators*
+    
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */operators*
+
+* Body:
+    ```JSON
+    {
+        "first_name": "string | required",
+        "last_name": "string | required",
+        "email": "string | optional",
+        "phone_number": "string | required",
+        "position": "string | required",
+        "description": "string | optional",
+        "type_operator": "integer | required",
+    }
+    ```
+    Note: 
+
+    * type_operator:
+
+        * 1 = Manager
+        * 2 = Operator
+
+* Response:
+
+    * Object created.
+
+**PUT** - */operators*
+
+* Body:
+    ```JSON
+    {
+        "id": "operator_id",
+        "last_name": "string | required",
+        "email": "string | optional",
+        "phone_number": "string | required",
+        "position": "string | required",
+        "description": "string | optional",
+        "type_operator": "integer | required",
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */operators*
+
+* Body:
+    ```JSON
+    {
+        "id": "operator_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Locations:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */locations*
+    
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */locations*
+
+* Body:
+    ```JSON
+    {
+        "name": "string | required",
+        "address": "string | required",
+        "location_type_id": "integer | required | location_type_id",
+        "business_email": "string | optional",
+        "lat": "string | optional",
+        "lng": "string | optional",
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */locations*
+
+* Body:
+    ```JSON
+    {
+        "id": "location_id",
+        "name": "string | required",
+        "address": "string | required",
+        "location_type_id": "integer | required | location_type_id",
+        "business_email": "string | optional",
+        "lat": "string | optional",
+        "lng": "string | optional",
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */locations*
+
+* Body:
+    ```JSON
+    {
+        "id": "location_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
