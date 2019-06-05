@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_170937) do
+ActiveRecord::Schema.define(version: 2019_06_05_173527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,15 @@ ActiveRecord::Schema.define(version: 2019_06_05_170937) do
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_customer_companies_on_company_id"
     t.index ["customer_id"], name: "index_customer_companies_on_customer_id"
+  end
+
+  create_table "customer_contacts", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "contact_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_customer_contacts_on_contact_id"
+    t.index ["customer_id"], name: "index_customer_contacts_on_customer_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -281,6 +290,8 @@ ActiveRecord::Schema.define(version: 2019_06_05_170937) do
   add_foreign_key "companies", "company_industries"
   add_foreign_key "customer_companies", "companies", on_delete: :cascade
   add_foreign_key "customer_companies", "customers", on_delete: :cascade
+  add_foreign_key "customer_contacts", "contacts", on_delete: :cascade
+  add_foreign_key "customer_contacts", "customers", on_delete: :cascade
   add_foreign_key "location_attention_schedules", "locations", on_delete: :cascade
   add_foreign_key "location_business_types", "business_types", on_delete: :cascade
   add_foreign_key "location_business_types", "locations", on_delete: :cascade
