@@ -119,6 +119,12 @@ Rails.application.routes.draw do
       post "contacts", to: "contacts#create"
       put "contacts", to: "contacts#update"
       delete "contacts", to: "contacts#destroy"
+
+      # Company Industries
+      get "company/industries", to: "company_industries#get_industries"
+      post "company/industries", to: "company_industries#create"
+      put "company/industries", to: "company_industries#update"
+      delete "company/industries", to: "company_industries#destroy"
     end
   end
 end
