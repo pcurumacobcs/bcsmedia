@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_153144) do
+ActiveRecord::Schema.define(version: 2019_06_05_170937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,15 @@ ActiveRecord::Schema.define(version: 2019_06_05_153144) do
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "customer_companies", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_customer_companies_on_company_id"
+    t.index ["customer_id"], name: "index_customer_companies_on_customer_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -270,6 +279,8 @@ ActiveRecord::Schema.define(version: 2019_06_05_153144) do
   end
 
   add_foreign_key "companies", "company_industries"
+  add_foreign_key "customer_companies", "companies", on_delete: :cascade
+  add_foreign_key "customer_companies", "customers", on_delete: :cascade
   add_foreign_key "location_attention_schedules", "locations", on_delete: :cascade
   add_foreign_key "location_business_types", "business_types", on_delete: :cascade
   add_foreign_key "location_business_types", "locations", on_delete: :cascade
