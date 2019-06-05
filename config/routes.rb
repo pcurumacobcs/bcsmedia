@@ -103,6 +103,39 @@ Rails.application.routes.draw do
       post "screens/installations", to: "screen_installations#create"
       put "screens/installations", to: "screen_installations#update"
       delete "screens/installations", to: "screen_installations#destroy"
+
+      # Customers
+      get "customers", to: "customers#get_customers"
+      post "customers", to: "customers#create"
+      put "customers", to: "customers#update"
+      delete "customers", to: "customers#destroy"
+      # Users Customers
+      post "users/customers", to: "user_customers#create"
+      delete "users/customers", to: "user_customers#destroy"
+      # Customers Companies
+      post "customers/companies", to: "customer_companies#create"
+      delete "customers/companies", to: "customer_companies#destroy"
+
+      # Contact
+      get "contacts", to: "contacts#get_contacts"
+      post "contacts", to: "contacts#create"
+      put "contacts", to: "contacts#update"
+      delete "contacts", to: "contacts#destroy"
+      # Customers Contacts
+      post "customers/contacts", to: "customer_contacts#create"
+      delete "customers/contacts", to: "customer_contacts#destroy"
+
+      # Company Industries
+      get "companies/industries", to: "company_industries#get_industries"
+      post "companies/industries", to: "company_industries#create"
+      put "companies/industries", to: "company_industries#update"
+      delete "companies/industries", to: "company_industries#destroy"
+
+      # Companies
+      get "companies", to: "companies#get_companies"
+      post "companies", to: "companies#create"
+      put "companies", to: "companies#update"
+      delete "companies", to: "companies#destroy"
     end
   end
 end

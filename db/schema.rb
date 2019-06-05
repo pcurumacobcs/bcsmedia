@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_03_190225) do
+ActiveRecord::Schema.define(version: 2019_06_05_173527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,62 @@ ActiveRecord::Schema.define(version: 2019_06_03_190225) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_business_types_on_name", unique: true
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.bigint "company_industry_id"
+    t.string "name", null: false
+    t.string "address", default: "", null: false
+    t.string "phone_number", default: "", null: false
+    t.string "web_site", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_industry_id"], name: "index_companies_on_company_industry_id"
+  end
+
+  create_table "company_industries", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "phone_number", default: "", null: false
+    t.string "cell_phone_number", default: "", null: false
+    t.integer "status", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "customer_companies", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_customer_companies_on_company_id"
+    t.index ["customer_id"], name: "index_customer_companies_on_customer_id"
+  end
+
+  create_table "customer_contacts", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "contact_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_customer_contacts_on_contact_id"
+    t.index ["customer_id"], name: "index_customer_contacts_on_customer_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "tradename", default: "", null: false
+    t.string "address", default: "", null: false
+    t.string "phone_number", default: "", null: false
+    t.string "nit", default: "", null: false
+    t.integer "customer_type", default: 1, null: false
+    t.integer "status", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "location_attention_schedules", force: :cascade do |t|
@@ -209,6 +265,15 @@ ActiveRecord::Schema.define(version: 2019_06_03_190225) do
     t.index ["screen_type_id"], name: "index_screens_on_screen_type_id"
   end
 
+  create_table "user_customers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_user_customers_on_customer_id"
+    t.index ["user_id"], name: "index_user_customers_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "last_name", null: false
@@ -222,6 +287,11 @@ ActiveRecord::Schema.define(version: 2019_06_03_190225) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "companies", "company_industries"
+  add_foreign_key "customer_companies", "companies", on_delete: :cascade
+  add_foreign_key "customer_companies", "customers", on_delete: :cascade
+  add_foreign_key "customer_contacts", "contacts", on_delete: :cascade
+  add_foreign_key "customer_contacts", "customers", on_delete: :cascade
   add_foreign_key "location_attention_schedules", "locations", on_delete: :cascade
   add_foreign_key "location_business_types", "business_types", on_delete: :cascade
   add_foreign_key "location_business_types", "locations", on_delete: :cascade
@@ -241,4 +311,6 @@ ActiveRecord::Schema.define(version: 2019_06_03_190225) do
   add_foreign_key "screens", "locations"
   add_foreign_key "screens", "screen_brands"
   add_foreign_key "screens", "screen_types"
+  add_foreign_key "user_customers", "customers", on_delete: :cascade
+  add_foreign_key "user_customers", "users", on_delete: :cascade
 end
