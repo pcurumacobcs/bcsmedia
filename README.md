@@ -1151,3 +1151,393 @@ In all request **Header:**
     ```
 
 * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Customers:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */customers*
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */customers*
+
+* Body:
+    ```JSON
+    {
+        "name": "string | required",
+        "tradename": "string | required",
+        "address": "string | required",
+        "phone_number": "string | required",
+        "nit": "string",
+        "customer_type": "integer | required"
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */customers*
+
+* Body:
+    ```JSON
+    {
+        "id": "customer_id",
+        "name": "string | required",
+        "tradename": "string | required",
+        "address": "string | required",
+        "phone_number": "string | required",
+        "nit": "string",
+        "customer_type": "integer | required"
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */customers*
+
+* Body:
+    ```JSON
+    {
+        "id": "customer_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## User Customers:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**POST** - */users/customers*
+
+* Body:
+    ```JSON
+    {
+        "user_id": "integer | required | user_id",
+        "customer_id": "integer | required | customer_id",
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**DELETE** - */users/customers*
+
+* Body:
+    ```JSON
+    {
+        "user_id": "integer | required | user_id",
+        "customer_id": "integer | required | customer_id",
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Contacts:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */customers*
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */customers*
+
+* Body:
+    ```JSON
+    {
+        "name": "string | required",
+        "phone_number": "string | optional",
+        "cell_phone_number": "string | optional",
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */customers*
+
+* Body:
+    ```JSON
+    {
+        "id": "contact_id",
+        "name": "string | required",
+        "phone_number": "string | optional",
+        "cell_phone_number": "string | optional",
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */customers*
+
+* Body:
+    ```JSON
+    {
+        "id": "contact_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Customer Contacts:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**POST** - */customers/contacts*
+
+* Body:
+    ```JSON
+    {
+        "customer_id": "integer | required | customer_id",
+        "contact_id": "integer | required | contact_id",
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**DELETE** - */customers/contacts*
+
+* Body:
+    ```JSON
+    {
+        "customer_id": "integer | required | customer_id",
+        "contact_id": "integer | required | contact_id",
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Company Industries:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */companies/industries*
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */companies/industries*
+
+* Body:
+    ```JSON
+    {
+        "name": "string | required"
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */companies/industries*
+
+* Body:
+    ```JSON
+    {
+        "id": "company_industry_id",
+        "name": "string | required"
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */companies/industries*
+
+* Body:
+    ```JSON
+    {
+        "id": "company_industry_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Company:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */companies*
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */companies*
+
+* Body:
+    ```JSON
+    {
+        "company_industry_id": "integer | company_industry_id",
+        "name": "string | required",
+        "address": "string | required",
+        "phone_number": "string | required",
+        "web_site": "string | optional",
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */companies*
+
+* Body:
+    ```JSON
+    {
+        "id": "company_id",
+        "company_industry_id": "integer | company_industry_id",
+        "name": "string | required",
+        "address": "string | required",
+        "phone_number": "string | required",
+        "web_site": "string | optional",
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */companies*
+
+* Body:
+    ```JSON
+    {
+        "id": "company_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Customer Company:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**POST** - */customers/companies*
+
+* Body:
+    ```JSON
+    {
+        "customer_id": "integer | required | customer_id",
+        "company_id": "integer | required | company_id",
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**DELETE** - */customers/companies*
+
+* Body:
+    ```JSON
+    {
+        "customer_id": "integer | required | customer_id",
+        "company_id": "integer | required | company_id",
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
