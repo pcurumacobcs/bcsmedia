@@ -113,6 +113,12 @@ Rails.application.routes.draw do
       # Customers
       post "users/customers", to: "user_customers#create"
       delete "users/customers", to: "user_customers#destroy"
+
+      # Contact
+      get "contacts", to: "contacts#get_contacts"
+      post "contacts", to: "contacts#create"
+      put "contacts", to: "contacts#update"
+      delete "contacts", to: "contacts#destroy"
     end
   end
 end
