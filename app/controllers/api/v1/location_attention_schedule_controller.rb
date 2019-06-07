@@ -32,7 +32,7 @@ class Api::V1::LocationAttentionScheduleController < ApplicationController
   # PUT /locations/attention_schedule
   def update
     unless @attention_schedule.update(attention_schedule_params)
-      render json: { errors: @attention_schedule.errors.full_messages },
+      render json: { errors: @attention_schedule.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       render json: @attention_schedule
@@ -42,7 +42,7 @@ class Api::V1::LocationAttentionScheduleController < ApplicationController
   # DELETE /locations/attention_schedule
   def destroy
     unless @attention_schedule.destroy
-      render json: { errors: @attention_schedule.errors.full_messages },
+      render json: { errors: @attention_schedule.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       resource_deleted

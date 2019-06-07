@@ -31,7 +31,7 @@ class Api::V1::ScreensController < ApplicationController
   # PUT /screens
   def update
     unless @screen.update(screens_params)
-      render json: { errors: @screen.errors.full_messages },
+      render json: { errors: @screen.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       render json: @screen
@@ -41,7 +41,7 @@ class Api::V1::ScreensController < ApplicationController
   # DELETE /screens
   def destroy
     unless @screen.destroy
-      render json: { errors: @screen.errors.full_messages },
+      render json: { errors: @screen.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       resource_deleted

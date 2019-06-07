@@ -31,7 +31,7 @@ class Api::V1::ScreenInstallationsController < ApplicationController
   # PUT /screens/installations
   def update
     unless @installation.update(installations_params)
-      render json: { errors: @installation.errors.full_messages },
+      render json: { errors: @installation.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       render json: @installation
@@ -41,7 +41,7 @@ class Api::V1::ScreenInstallationsController < ApplicationController
   # DELETE /screens/installations
   def destroy
     unless @installation.destroy
-      render json: { errors: @installation.errors.full_messages },
+      render json: { errors: @installation.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       resource_deleted

@@ -27,7 +27,7 @@ class Api::V1::ScreenBrandsController < ApplicationController
   # PUT /screens/brands
   def update
     unless @screen_brand.update(screen_brands_params)
-      render json: { errors: @screen_brand.errors.full_messages },
+      render json: { errors: @screen_brand.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       render json: @screen_brand
@@ -37,7 +37,7 @@ class Api::V1::ScreenBrandsController < ApplicationController
   # DELETE /screens/brands
   def destroy
     unless @screen_brand.destroy
-      render json: { errors: @screen_brand.errors.full_messages },
+      render json: { errors: @screen_brand.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       resource_deleted

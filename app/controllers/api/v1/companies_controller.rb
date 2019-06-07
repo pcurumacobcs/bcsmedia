@@ -27,7 +27,7 @@ class Api::V1::CompaniesController < ApplicationController
   # PUT /companies
   def update
     unless @company.update(companies_params)
-      render json: { errors: @company.errors.full_messages },
+      render json: { errors: @company.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       render json: @company
@@ -37,7 +37,7 @@ class Api::V1::CompaniesController < ApplicationController
   # DELETE /companies
   def destroy
     unless @company.destroy
-      render json: { errors: @company.errors.full_messages },
+      render json: { errors: @company.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       resource_deleted

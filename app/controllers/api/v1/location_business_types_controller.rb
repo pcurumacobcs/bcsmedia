@@ -16,7 +16,7 @@ class Api::V1::LocationBusinessTypesController < ApplicationController
   # DELETE /locations/business_type
   def destroy
     unless @location_bt.destroy
-      render json: { errors: @location_bt.errors.full_messages },
+      render json: { errors: @location_bt.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       resource_deleted

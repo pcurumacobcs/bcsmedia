@@ -14,8 +14,7 @@ class AuthenticationController < ApplicationController
 
       render json: @user, status: :created
     else
-      render json: { errors: @user.errors.full_messages },
-             status: :unprocessable_entity
+      render json: { errors: @user.errors.full_messages, status: 0 }, status: :unprocessable_entity
     end
   end
 
@@ -28,7 +27,7 @@ class AuthenticationController < ApplicationController
       render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
                     username: @user.username }, status: :ok
     else
-      render json: { error: "unauthorized" }, status: :unauthorized
+      render json: { error: "unauthorized", status: 0 }, status: :unauthorized
     end
   end
 
