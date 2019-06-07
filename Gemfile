@@ -28,6 +28,8 @@ gem 'redis', '~> 4.0'
 gem 'jwt'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+# Use cors
+gem 'rack-cors', :require => 'rack/cors'
 
 # Boostrap 4 
 gem 'bootstrap'
