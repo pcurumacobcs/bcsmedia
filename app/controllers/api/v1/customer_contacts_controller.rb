@@ -16,7 +16,7 @@ class Api::V1::CustomerContactsController < ApplicationController
   # DELETE /customers/contacts
   def destroy
     unless @customer_contact.destroy
-      render json: { errors: @customer_contact.errors.full_messages },
+      render json: { errors: @customer_contact.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       resource_deleted

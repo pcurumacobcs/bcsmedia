@@ -27,7 +27,7 @@ class Api::V1::ContactsController < ApplicationController
   # PUT /contacts
   def update
     unless @contact.update(contacts_params)
-      render json: { errors: @contact.errors.full_messages },
+      render json: { errors: @contact.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       render json: @contact
@@ -37,7 +37,7 @@ class Api::V1::ContactsController < ApplicationController
   # DELETE /contacts
   def destroy
     unless @contact.destroy
-      render json: { errors: @contact.errors.full_messages },
+      render json: { errors: @contact.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       resource_deleted

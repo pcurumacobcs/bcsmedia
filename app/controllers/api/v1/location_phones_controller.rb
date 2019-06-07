@@ -32,7 +32,7 @@ class Api::V1::LocationPhonesController < ApplicationController
   # PUT /locations/phones
   def update
     unless @phone_number.update(phone_number_params)
-      render json: { errors: @phone_number.errors.full_messages },
+      render json: { errors: @phone_number.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       render json: @phone_number
@@ -42,7 +42,7 @@ class Api::V1::LocationPhonesController < ApplicationController
   # DELETE /locations/phones
   def destroy
     unless @phone_number.destroy
-      render json: { errors: @phone_number.errors.full_messages },
+      render json: { errors: @phone_number.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       resource_deleted

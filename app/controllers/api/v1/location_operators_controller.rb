@@ -16,7 +16,7 @@ class Api::V1::LocationOperatorsController < ApplicationController
   # DELETE /locations/operators
   def destroy
     unless @location_operator.destroy
-      render json: { errors: @location_operator.errors.full_messages },
+      render json: { errors: @location_operator.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       resource_deleted

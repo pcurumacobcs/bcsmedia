@@ -27,7 +27,7 @@ class Api::V1::CustomersController < ApplicationController
   # PUT /customers
   def update
     unless @customer.update(customers_params)
-      render json: { errors: @customer.errors.full_messages },
+      render json: { errors: @customer.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       render json: @customer
@@ -37,7 +37,7 @@ class Api::V1::CustomersController < ApplicationController
   # DELETE /customers
   def destroy
     unless @customer.destroy
-      render json: { errors: @customer.errors.full_messages },
+      render json: { errors: @customer.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       resource_deleted

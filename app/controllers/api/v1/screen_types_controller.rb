@@ -27,7 +27,7 @@ class Api::V1::ScreenTypesController < ApplicationController
   # PUT /screens/types
   def update
     unless @screen_type.update(screen_types_params)
-      render json: { errors: @screen_type.errors.full_messages },
+      render json: { errors: @screen_type.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       render json: @screen_type
@@ -37,7 +37,7 @@ class Api::V1::ScreenTypesController < ApplicationController
   # DELETE /screens/types
   def destroy
     unless @screen_type.destroy
-      render json: { errors: @screen_type.errors.full_messages },
+      render json: { errors: @screen_type.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       resource_deleted

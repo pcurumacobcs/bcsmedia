@@ -27,7 +27,7 @@ class Api::V1::LocationsTypesController < ApplicationController
   # PUT /locations/types
   def update
     unless @type.update(locations_types_params)
-      render json: { errors: @type.errors.full_messages },
+      render json: { errors: @type.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       render json: @type
@@ -37,7 +37,7 @@ class Api::V1::LocationsTypesController < ApplicationController
   # DELETE /locations/types
   def destroy
     unless @type.destroy
-      render json: { errors: @type.errors.full_messages },
+      render json: { errors: @type.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       resource_deleted

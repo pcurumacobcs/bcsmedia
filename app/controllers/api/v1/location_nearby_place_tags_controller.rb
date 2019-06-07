@@ -16,7 +16,7 @@ class Api::V1::LocationNearbyPlaceTagsController < ApplicationController
   # DELETE /locations/nearby_place_tag
   def destroy
     unless @location_np_tag.destroy
-      render json: { errors: @location_np_tag.errors.full_messages },
+      render json: { errors: @location_np_tag.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       resource_deleted

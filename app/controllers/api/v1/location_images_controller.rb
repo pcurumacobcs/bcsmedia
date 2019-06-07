@@ -32,7 +32,7 @@ class Api::V1::LocationImagesController < ApplicationController
   # PUT /locations/images
   def update
     unless @location_image.update(location_image_params)
-      render json: { errors: @location_image.errors.full_messages },
+      render json: { errors: @location_image.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       render json: @location_image
@@ -42,7 +42,7 @@ class Api::V1::LocationImagesController < ApplicationController
   # DELETE /locations/images
   def destroy
     unless @location_image.destroy
-      render json: { errors: @location_image.errors.full_messages },
+      render json: { errors: @location_image.errors.full_messages, status: 0 },
              status: :unprocessable_entity
     else
       resource_deleted
