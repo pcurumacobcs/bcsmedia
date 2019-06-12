@@ -1154,6 +1154,84 @@ In all request **Header:**
 
 ---
 
+## Screen Place Installations:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */screens/place/installations*
+
+
+* Body:
+    ```JSON
+    {
+        "screen_id": "integer | optional | screen_id",
+    }
+    ```
+    
+    Note: if you pass the parameter *screen_id*, you will receive the screen places installations of that screen. Otherwise, you will receive all the screen places installations of all the screens.
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */screens/place/installations*
+
+* Body:
+    ```JSON
+    {
+        "screen_id": "integer | required | screen_id",
+        "type": "integer | required",
+        "nids": "string | required",
+        "antireflective": "boolean | required"
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */screens/place/installations*
+
+* Body:
+    ```JSON
+    {
+        "id": "place_installation_id",
+        "screen_id": "integer | required | screen_id",
+        "type": "integer | required",
+        "nids": "string | required",
+        "antireflective": "boolean | required"
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */screens/place/installations*
+
+* Body:
+    ```JSON
+    {
+        "id": "place_installation_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
 ## Customers:
 
 **Prefix:** */api/v1*
