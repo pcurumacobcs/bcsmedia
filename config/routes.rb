@@ -80,29 +80,35 @@ Rails.application.routes.draw do
       put "locations/images", to: "location_images#update"
       delete "locations/images", to: "location_images#destroy"
 
-      # Location Brands
+      # Screens Brands
       get "screens/brands", to: "screen_brands#get_screen_brands"
       post "screens/brands", to: "screen_brands#create"
       put "screens/brands", to: "screen_brands#update"
       delete "screens/brands", to: "screen_brands#destroy"
 
-      # Location Brands
+      # Screens Types
       get "screens/types", to: "screen_types#get_screen_types"
       post "screens/types", to: "screen_types#create"
       put "screens/types", to: "screen_types#update"
       delete "screens/types", to: "screen_types#destroy"
 
-      # Location Brands
+      # Screens
       get "screens", to: "screens#get_screens" # you can pass a body with param :location_id for search all screens from a single location
       post "screens", to: "screens#create"
       put "screens", to: "screens#update"
       delete "screens", to: "screens#destroy"
 
-      # Location Brands
+      # Screens Installations
       get "screens/installations", to: "screen_installations#get_screen_installations" # you can pass a body with param :screen_id for search all installations from a single screen
       post "screens/installations", to: "screen_installations#create"
       put "screens/installations", to: "screen_installations#update"
       delete "screens/installations", to: "screen_installations#destroy"
+
+      # Screens Place Installations
+      get "screens/place/installations", to: "place_installations#get_place_installations" # you can pass a body with param :screen_id for search all installations from a single screen
+      post "screens/place/installations", to: "place_installations#create"
+      put "screens/place/installations", to: "place_installations#update"
+      delete "screens/place/installations", to: "place_installations#destroy"
 
       # Customers
       get "customers", to: "customers#get_customers"

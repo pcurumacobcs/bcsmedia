@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_173527) do
+ActiveRecord::Schema.define(version: 2019_06_12_213615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -192,6 +192,16 @@ ActiveRecord::Schema.define(version: 2019_06_05_173527) do
     t.index ["slug"], name: "index_permissions_on_slug", unique: true
   end
 
+  create_table "place_installations", force: :cascade do |t|
+    t.bigint "screen_id"
+    t.integer "type", default: 1, null: false
+    t.string "nids", default: "300", null: false
+    t.boolean "antireflective", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["screen_id"], name: "index_place_installations_on_screen_id"
+  end
+
   create_table "role_permissions", force: :cascade do |t|
     t.bigint "permission_id"
     t.bigint "role_id"
@@ -303,6 +313,7 @@ ActiveRecord::Schema.define(version: 2019_06_05_173527) do
   add_foreign_key "location_operators", "operators", on_delete: :cascade
   add_foreign_key "location_phones", "locations"
   add_foreign_key "locations", "location_types"
+  add_foreign_key "place_installations", "screens", on_delete: :cascade
   add_foreign_key "role_permissions", "permissions"
   add_foreign_key "role_permissions", "roles"
   add_foreign_key "role_users", "roles"

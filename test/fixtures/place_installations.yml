@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  screen: one
+  type: 1
+  nids: MyString
+  antireflective: false
+
+two:
+  screen: two
+  type: 1
+  nids: MyString
+  antireflective: false
