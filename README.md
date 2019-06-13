@@ -60,8 +60,7 @@ All these requests must be **HTTP** and return answers in **JSON** format.
         * ***password:*** string, required  -->
         ```JSON
         {
-            "email": "string | optional",
-            "username": "string | optional",
+            "username": "string | required | can be 'email' or 'username'",
             "password": "string | required"
         }
         ```
@@ -76,6 +75,7 @@ All these requests must be **HTTP** and return answers in **JSON** format.
             "token": "string",
             "exp": "datetime | yyyy-mm-dd HH-MM",
             "username": "string",
+            "email": "string",
             "status": 1
         }
         ```
