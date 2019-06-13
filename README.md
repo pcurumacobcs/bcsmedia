@@ -74,8 +74,7 @@ All these requests must be **HTTP** and return answers in **JSON** format.
         {
             "token": "string",
             "exp": "datetime | yyyy-mm-dd HH-MM",
-            "username": "string",
-            "email": "string",
+            "user": "array",
             "status": 1
         }
         ```
