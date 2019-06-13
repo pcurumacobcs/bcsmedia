@@ -2,7 +2,7 @@ class AuthenticationController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :authorize_request, except: [:login, :register]
 
-  before_action :find_user_email, :only => [:login]
+  before_action :find_user, :only => [:login]
 
   # POST /auth/register
   def register
@@ -22,11 +22,10 @@ class AuthenticationController < ApplicationController
 
   # POST /auth/login
   def login
-    # @user = User.find_by_email(params[:email])
     if @user && @user.authenticate(params[:password])
       token = JsonWebToken.encode(user_id: @user.id)
-      time = Time.now + 24.hours.to_i
-      render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"), username: @user.username, status: 1 }, status: :ok
+      time = Time.now + 8760.hours.to_i
+      render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"), username: @user.username, email: @user.email, status: 1 }, status: :ok
     else
       render json: { messages: ["Invalid Email, Username or Password"], status: 0 }, status: :unauthorized
       # render json: { error: "unauthorized", status: 0 }, status: :unauthorized
@@ -35,25 +34,17 @@ class AuthenticationController < ApplicationController
 
   private
 
-  def find_user_email
-    @user = User.find_by_email(params[:email])
+  def find_user
+    @user = User.find_by_email(params[:username])
     if @user.nil?
       @user = User.where(username: params[:username]).first
-      # render json: { hello: "hello" }
     end
-  rescue ActiveRecord::RecordNotFound
-    resource_not_found
-    find_user_by_username
-  end
-
-  def find_user_by_username
-    @user = User.where(username: params[:username])
   rescue ActiveRecord::RecordNotFound
     resource_not_found
   end
 
   def login_params
-    params.permit(:email, :password)
+    params.permit(:username, :password)
   end
 
   def register_params
