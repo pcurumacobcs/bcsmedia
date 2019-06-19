@@ -14,9 +14,9 @@ class AuthenticationController < ApplicationController
       )
       role_user.save
 
-      render json: @user, status: :created
+      render json: { user: @user, message: "User created successfully. Please, login with this user.", status: 1 }, status: :created
     else
-      render json: { errors: @user.errors.full_messages, status: 0 }, status: :unprocessable_entity
+      render json: { errors: @user.errors.full_messages, message: "Ups, something was wrong. Please try again and review your data.", status: 0 }, status: :ok
     end
   end
 
