@@ -13,4 +13,13 @@ class Api::V1::UsersController < ApplicationController
       render json: { 'data': @users, 'status': 1 }
     end
   end
+
+  # GET /user/:id
+  def get_user
+    @user = User.find(params[:id])
+
+    render json: { user: @user, status: 1 }
+  rescue ActiveRecord::RecordNotFound
+    resource_not_found
+  end
 end
