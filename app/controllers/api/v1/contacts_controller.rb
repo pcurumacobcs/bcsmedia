@@ -20,6 +20,21 @@ class Api::V1::ContactsController < ApplicationController
     @contact = Contact.new(contacts_params)
 
     if @contact.save
+      if params[:costumer_id]
+        # save customer contact if you bring the parameter
+        @customer_contact = CustomerContact.new(
+          customer_id: params[:costumer_id],
+          contact_id: @contact.id
+        )
+
+        if @customer_contact.save
+          # return both saved data
+          render json: {
+            contact: @contact,
+            customer_contact: @customer_contact
+          }, status: :created and return
+        end
+      end
       render json: @contact, status: :created
     end
   end
