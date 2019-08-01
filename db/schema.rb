@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_12_213615) do
+ActiveRecord::Schema.define(version: 2019_07_30_174904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "advertisements", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "contact_id"
+    t.bigint "company_id"
+    t.bigint "user_id"
+    t.integer "status", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_advertisements_on_user_id"
+  end
 
   create_table "business_types", force: :cascade do |t|
     t.string "name", null: false
@@ -297,6 +308,7 @@ ActiveRecord::Schema.define(version: 2019_06_12_213615) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "advertisements", "users"
   add_foreign_key "companies", "company_industries"
   add_foreign_key "customer_companies", "companies", on_delete: :cascade
   add_foreign_key "customer_companies", "customers", on_delete: :cascade

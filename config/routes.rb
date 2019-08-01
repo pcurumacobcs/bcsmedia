@@ -143,6 +143,13 @@ Rails.application.routes.draw do
       post "companies", to: "companies#create"
       put "companies", to: "companies#update"
       delete "companies", to: "companies#destroy"
+
+      # Advertisement
+      get "advertisements", to: "advertising#get_advertisements"
+      get "advertising", to: "advertising#get_advertising"
+      post "advertising", to: "advertising#create"
+      put "advertising", to: "advertising#update"
+      delete "advertising", to: "advertising#destroy"
     end
   end
 end
