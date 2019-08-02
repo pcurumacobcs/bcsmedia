@@ -1620,3 +1620,72 @@ In all request **Header:**
     ```
 
 * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Advertising:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */advertisements*
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */advertising*
+
+* Body:
+    ```JSON
+    {
+        "customer_id": "integer | optional | customer_id",
+        "contact_id": "integer | optional | contact_id",
+        "company_id": "integer | optional | company_id",
+        "user_id": "integer | required | user_id",
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */advertising*
+
+* Body:
+    ```JSON
+    {
+        "id": "advertising_id",
+        "customer_id": "integer | optional | customer_id",
+        "contact_id": "integer | optional | contact_id",
+        "company_id": "integer | optional | company_id",
+        "user_id": "integer | required | user_id",
+        "status": "integer | optional",
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */advertising*
+
+* Body:
+    ```JSON
+    {
+        "id": "advertising_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
