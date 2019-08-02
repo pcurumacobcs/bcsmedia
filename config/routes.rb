@@ -150,6 +150,8 @@ Rails.application.routes.draw do
       post "advertising", to: "advertising#create"
       put "advertising", to: "advertising#update"
       delete "advertising", to: "advertising#destroy"
+      # update advertising for different situations
+      # put "advertising", to: "advertising#update_advertising"
     end
   end
 end

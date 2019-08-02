@@ -62,9 +62,9 @@ class Api::V1::AdvertisingController < ApplicationController
   # params advertising
   def advertising_params
     params.permit(
-      :id_customer,
-      :id_contact,
-      :id_company,
+      :customer_id,
+      :contact_id,
+      :company_id,
       :user_id
     )
   end
