@@ -5,6 +5,42 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
 
-User.create(:name => 'root', :last_name => 'dev', :username => 'root', :email => 'admin@batrescs.com', :password_digest => '12345678', :status => '1')
-User.create(:name => 'eduardo', :last_name => 'llamas', :username => 'ellamas', :email => 'ellamas@batrescs.com', :password_digest => '12345678', :status => '1')
+User.create(
+  name: 'root',
+  last_name: 'dev',
+  username: 'root',
+  email: 'admin@batrescs.com',
+  password_digest: '12345678',
+  status: '1'
+)
+
+User.create(
+  name: 'eduardo',
+  last_name: 'llamas',
+  username: 'ellamas',
+  email: 'ellamas@batrescs.com',
+  password_digest: '12345678',
+  status: '1'
+)
+
+i = 0
+loop do
+  i += 2
+  Location.create(
+    name: Faker::Name.name,
+    address: 'Ciudad de Guatemala',
+    location_type_id: 1,
+    business_email: Faker::Internet.email,
+    lat: '0',
+    lng: '0',
+    status: 1
+  )
+  if i == 10
+    break       # this will cause execution to exit the loop
+  end
+end
+
+
+puts "Seeds executed"
