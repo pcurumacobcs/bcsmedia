@@ -1689,3 +1689,69 @@ In all request **Header:**
     ```
 
 * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Advertising Locations:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */advertising_locations*
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */advertising_location*
+
+* Body:
+    ```JSON
+    {
+        "advertisements_id": "integer | required | advertisements_id",
+        "locations_id": "integer | required | locations_id",
+        "status": "integer | optional",
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */advertising_location*
+
+* Body:
+    ```JSON
+    {
+        "id": "advertising_locations_id",
+        "advertisements_id": "integer | required | advertisements_id",
+        "locations_id": "integer | required | locations_id",
+        "status": "integer | optional",
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */advertising_location*
+
+* Body:
+    ```JSON
+    {
+        "id": "advertising_locations_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
