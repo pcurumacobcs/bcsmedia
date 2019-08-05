@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_30_174904) do
+ActiveRecord::Schema.define(version: 2019_08_05_170634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 2019_07_30_174904) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_advertisements_on_user_id"
+  end
+
+  create_table "advertising_locations", force: :cascade do |t|
+    t.bigint "advertisements_id"
+    t.bigint "locations_id"
+    t.integer "status", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["advertisements_id"], name: "index_advertising_locations_on_advertisements_id"
+    t.index ["locations_id"], name: "index_advertising_locations_on_locations_id"
   end
 
   create_table "business_types", force: :cascade do |t|
@@ -309,6 +319,8 @@ ActiveRecord::Schema.define(version: 2019_07_30_174904) do
   end
 
   add_foreign_key "advertisements", "users"
+  add_foreign_key "advertising_locations", "advertisements", column: "advertisements_id", on_delete: :cascade
+  add_foreign_key "advertising_locations", "locations", column: "locations_id", on_delete: :cascade
   add_foreign_key "companies", "company_industries"
   add_foreign_key "customer_companies", "companies", on_delete: :cascade
   add_foreign_key "customer_companies", "customers", on_delete: :cascade
