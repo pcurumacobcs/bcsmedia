@@ -23,11 +23,23 @@ class Api::V1::AdvertisingLocationsController < ApplicationController
 
   # POST /advertising_location
   def create
-    @advertising_location = AdvertisingLocation.new(advertising_location_params)
+    ad_id = params[:advertising_id]
+    locations = params[:locations]
+    locations_selected = []
 
-    if @advertising_location.save
-      render json: @advertising_location, status: :created
+    locations.each do |location|
+      if location[:selected]
+        advertising_location = AdvertisingLocation.new(
+          :advertisements_id => ad_id,
+          :locations_id => location[:id]
+        )
+
+        advertising_location.save
+        locations_selected.push(advertising_location)
+      end
     end
+
+    render json: locations_selected, status: :created
   end
 
   # PUT /advertising_location
