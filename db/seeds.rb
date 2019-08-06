@@ -27,7 +27,7 @@ User.create(
 
 i = 0
 loop do
-  i += 2
+  i += 1
   Location.create(
     name: Faker::Name.name,
     address: 'Ciudad de Guatemala',
@@ -37,7 +37,7 @@ loop do
     lng: '0',
     status: 1
   )
-  if i == 10
+  if i == 15
     break       # this will cause execution to exit the loop
   end
 end

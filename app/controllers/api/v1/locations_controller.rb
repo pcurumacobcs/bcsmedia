@@ -15,6 +15,40 @@ class Api::V1::LocationsController < ApplicationController
     end
   end
 
+  # GET /get_locations_ads
+  def get_locations_ads
+    @locations = Location.where(status: 1)
+
+    if !@locations.any?
+      resource_not_found
+    else
+      # make array for response
+      response = []
+
+      @locations.each do |location|
+        # make structure for response
+        myLocation = {
+          :id => location.id,
+          :name => location.name,
+          :address => location.address,
+          # object called position 'cause the API for Maps need this format
+          :position => {
+            # :lat and :lng most be float number
+            :lat => Float(location.lat),
+            :lng => Float(location.lng)
+          },
+          # all by default in false 'cause they are not selected
+          :selected => false
+        }
+        
+        # push array like JS
+        response.push(myLocation)
+      end
+      # return my array with my structure
+      render json: { 'data': response, 'status': 1 }
+    end
+  end
+
   # POST /locations
   def create
     @location = Location.new(locations_params)

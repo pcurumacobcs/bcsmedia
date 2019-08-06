@@ -25,10 +25,13 @@ Rails.application.routes.draw do
       delete "locations/types", to: "locations_types#destroy"
 
       # Locations
+      # CRUD
       get "locations", to: "locations#get_locations"
       post "locations", to: "locations#create"
       put "locations", to: "locations#update"
       delete "locations", to: "locations#destroy"
+      # Locations for advertising
+      get "locations_ads", to: "locations#get_locations_ads"
 
       # Business Types
       get "business_types", to: "business_types#get_business_types"
