@@ -445,6 +445,27 @@ In all request **Header:**
 
 * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
 
+**GET** - */locations_ads*
+    
+* Response:
+    ```JSON
+    {
+        "data": [
+            {
+                "id": "integer",
+                "name": "string",
+                "address": "string",
+                "position": {
+                    "lat": "float",
+                    "lng": "float",
+                },
+                "selected": "boolean | default: false",
+            }
+        ],
+        "status": 1
+    }
+    ```
+
 ---
 
 ## Locations Business Types:
