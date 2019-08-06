@@ -1741,8 +1741,7 @@ In all request **Header:**
     ```JSON
     {
         "advertisements_id": "integer | required | advertisements_id",
-        "locations_id": "integer | required | locations_id",
-        "status": "integer | optional",
+        "locations": "array | required | locations_array"
     }
     ```
 
