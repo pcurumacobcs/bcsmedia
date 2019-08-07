@@ -1727,6 +1727,13 @@ In all request **Header:**
 
 **GET** - */advertising_locations*
 
+* Body:
+    ```JSON
+    {
+        "advertising_id": "integer | optional | advertising_id"
+    }
+    ```
+
 * Response:
     ```JSON
     {
@@ -1740,7 +1747,7 @@ In all request **Header:**
 * Body:
     ```JSON
     {
-        "advertisements_id": "integer | required | advertisements_id",
+        "advertising_id": "integer | required | advertising_id",
         "locations": "array | required | locations_array"
     }
     ```
