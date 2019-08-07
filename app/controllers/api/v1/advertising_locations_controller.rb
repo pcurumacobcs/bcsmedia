@@ -6,7 +6,11 @@ class Api::V1::AdvertisingLocationsController < ApplicationController
 
   # GET /advertising_locations
   def get_advertising_locations
-    @advertising_locations = AdvertisingLocation.all
+    if params[:advertising_id]
+      @advertising_locations = AdvertisingLocation.where(advertisements_id: params[:advertising_id])
+    else
+      @advertising_locations = AdvertisingLocation.all
+    end
 
     if !@advertising_locations.any?
       resource_not_found
@@ -28,18 +32,28 @@ class Api::V1::AdvertisingLocationsController < ApplicationController
     locations_selected = []
 
     locations.each do |location|
-      if location[:selected]
-        advertising_location = AdvertisingLocation.new(
-          :advertisements_id => ad_id,
-          :locations_id => location[:id]
-        )
+      # get location assigned to advertising
+      advertising_location = AdvertisingLocation.find_by advertisements_id: ad_id, locations_id: location[:id]
 
-        advertising_location.save
-        locations_selected.push(advertising_location)
+      if location[:selected]
+        # if is selected and doesn't exist
+        if advertising_location.nil?
+          advertising_location = AdvertisingLocation.new(
+            :advertisements_id => ad_id,
+            :locations_id => location[:id]
+          )
+          advertising_location.save
+        end
+      else
+        # if isn't selected and exist, destroy
+        if !advertising_location.nil?
+          advertising_location.destroy
+        end
       end
     end
-
-    render json: locations_selected, status: :created
+    # Get locations created
+    ad_locations = AdvertisingLocation.where(advertisements_id: ad_id)
+    render json: ad_locations, status: :created
   end
 
   # PUT /advertising_location
