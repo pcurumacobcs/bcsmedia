@@ -31,10 +31,12 @@ class Api::V1::AdvertisingLocationsController < ApplicationController
     locations = params[:locations]
     locations_selected = []
 
+    # this locations is from params
     locations.each do |location|
-      # get location assigned to advertising
+      # find by advertising_id and location_id
       advertising_location = AdvertisingLocation.find_by advertisements_id: ad_id, locations_id: location[:id]
-
+      
+      # if location is selected...
       if location[:selected]
         # if is selected and doesn't exist
         if advertising_location.nil?
@@ -49,11 +51,20 @@ class Api::V1::AdvertisingLocationsController < ApplicationController
         if !advertising_location.nil?
           advertising_location.destroy
         end
-      end
+      end # end if selected...
     end
-    # Get locations created
-    ad_locations = AdvertisingLocation.where(advertisements_id: ad_id)
-    render json: ad_locations, status: :created
+    # end locations.each
+
+    # now, get locations selected
+    locations_selected = []    
+    # search where advertising is equal
+    advertising_locations = AdvertisingLocation.where advertisements_id: ad_id
+    advertising_locations.each do |ad_location|
+      location = Location.find(ad_location[:locations_id])
+      locations_selected.push(location)
+    end
+
+    render json: locations_selected, status: :created
   end
 
   # PUT /advertising_location
