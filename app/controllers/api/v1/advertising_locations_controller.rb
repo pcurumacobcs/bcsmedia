@@ -60,7 +60,11 @@ class Api::V1::AdvertisingLocationsController < ApplicationController
     # search where advertising is equal
     advertising_locations = AdvertisingLocation.where advertisements_id: ad_id
     advertising_locations.each do |ad_location|
-      location = Location.find(ad_location[:locations_id])
+      # return json format to have control of its properties
+      location = Location.find(ad_location[:locations_id]).as_json(only: [:id, :name, :address, :status])
+
+      # add new field
+      location[:show_screens] = false
       locations_selected.push(location)
     end
 
