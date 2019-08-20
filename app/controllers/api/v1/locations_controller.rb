@@ -15,6 +15,37 @@ class Api::V1::LocationsController < ApplicationController
     end
   end
 
+  # GET /locations/filter
+  def get_locations_search
+    if Integer(params[:type_id]) != 0
+      @locations = Location.where(location_type_id: params[:type_id]).where(status: 1)
+    else
+      @locations = Location.where(status: 1)
+    end
+
+    if !@locations.any?
+      resource_not_found
+    else
+      response_to_maps
+
+      # return my array with my structure
+      if params[:start_date] && params[:end_date]
+        render json: {
+          'data': @response,
+          'date': {
+            'rangeDate': {
+              'start': params[:start_date],
+              'end': params[:end_date]
+            }
+          },
+          'status': 1
+        }
+      else
+        render json: { 'data': @response, 'status': 1 }
+      end
+    end
+  end
+
   # GET /get_locations_ads
   def get_locations_ads
     @locations = Location.where(status: 1)
@@ -22,30 +53,10 @@ class Api::V1::LocationsController < ApplicationController
     if !@locations.any?
       resource_not_found
     else
-      # make array for response
-      response = []
+      response_to_maps
 
-      @locations.each do |location|
-        # make structure for response
-        myLocation = {
-          :id => location.id,
-          :name => location.name,
-          :address => location.address,
-          # object called position 'cause the API for Maps need this format
-          :position => {
-            # :lat and :lng most be float number
-            :lat => Float(location.lat),
-            :lng => Float(location.lng)
-          },
-          # all by default in false 'cause they are not selected
-          :selected => false
-        }
-        
-        # push array like JS
-        response.push(myLocation)
-      end
       # return my array with my structure
-      render json: { 'data': response, 'status': 1 }
+      render json: { 'data': @response, 'status': 1 }
     end
   end
 
@@ -97,5 +108,35 @@ class Api::V1::LocationsController < ApplicationController
       :lat,
       :lng,
     )
+  end
+
+  def response_to_maps
+    # make array for response
+    @response = []
+
+    @locations.each do |location|
+
+      # get locations screens
+      screens = Screen.where(location_id: location[:id])
+      # make structure for @response
+      myLocation = {
+        :id => location.id,
+        :name => location.name,
+        :address => location.address,
+        # object called position 'cause the API for Maps need this format
+        :position => {
+          # :lat and :lng most be float number
+          :lat => Float(location.lat),
+          :lng => Float(location.lng)
+        },
+        # count screens array
+        :screens => screens.count, 
+        # all by default in false 'cause they are not selected
+        :selected => false
+      }
+      
+      # push array like JS
+      @response.push(myLocation)
+    end
   end
 end

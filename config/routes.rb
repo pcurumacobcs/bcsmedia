@@ -30,6 +30,8 @@ Rails.application.routes.draw do
       post "locations", to: "locations#create"
       put "locations", to: "locations#update"
       delete "locations", to: "locations#destroy"
+      # filter
+      get "locations/filter", to: "locations#get_locations_search"
       # Locations for advertising
       get "locations_ads", to: "locations#get_locations_ads"
 
