@@ -1782,3 +1782,51 @@ In all request **Header:**
     ```
 
 * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Advertising Location Screens:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */advertising_location_screens*
+
+* Body:
+    ```JSON
+    {
+        "advertising_id": "integer | optional | advertising_id",
+        "advertising_locations_id": "integer | optional | advertising_locations_id"
+    }
+    ```
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */advertising_location_screens*
+
+* Body:
+    ```JSON
+    {
+        "advertising_id": "integer | required | advertising_id",
+        "locations": "array | required | locations_array"
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+* Response: ``` { "message": "success", "status": 1 } ```

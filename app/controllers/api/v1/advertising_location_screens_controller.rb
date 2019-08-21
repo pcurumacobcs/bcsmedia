@@ -56,7 +56,7 @@ class Api::V1::AdvertisingLocationScreensController < ApplicationController
         end # end locations.each
       end
 
-      render json: { message: 'Success', status: 1 }, status: 200
+      render json: { message: 'success', status: 1 }, status: 200
     else
       render json: { errors: 'Some Data is missing...', status: 0 }, status: :unprocessable_entity
     end
