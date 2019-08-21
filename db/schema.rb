@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_05_170634) do
+ActiveRecord::Schema.define(version: 2019_08_21_172712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 2019_08_05_170634) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_advertisements_on_user_id"
+  end
+
+  create_table "advertising_location_screens", force: :cascade do |t|
+    t.bigint "advertisements_id"
+    t.bigint "advertising_locations_id"
+    t.bigint "screen_id"
+    t.integer "status", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["advertisements_id"], name: "index_advertising_location_screens_on_advertisements_id"
+    t.index ["advertising_locations_id"], name: "index_advertising_location_screens_on_advertising_locations_id"
+    t.index ["screen_id"], name: "index_advertising_location_screens_on_screen_id"
   end
 
   create_table "advertising_locations", force: :cascade do |t|
@@ -319,6 +331,9 @@ ActiveRecord::Schema.define(version: 2019_08_05_170634) do
   end
 
   add_foreign_key "advertisements", "users"
+  add_foreign_key "advertising_location_screens", "advertisements", column: "advertisements_id", on_delete: :cascade
+  add_foreign_key "advertising_location_screens", "advertising_locations", column: "advertising_locations_id", on_delete: :cascade
+  add_foreign_key "advertising_location_screens", "screens"
   add_foreign_key "advertising_locations", "advertisements", column: "advertisements_id", on_delete: :cascade
   add_foreign_key "advertising_locations", "locations", column: "locations_id", on_delete: :cascade
   add_foreign_key "companies", "company_industries"

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  advertisements: one
+  advertising_locations: one
+  screen: one
+  status: 1
+
+two:
+  advertisements: two
+  advertising_locations: two
+  screen: two
+  status: 1

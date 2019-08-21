@@ -60,11 +60,33 @@ class Api::V1::AdvertisingLocationsController < ApplicationController
     # search where advertising is equal
     advertising_locations = AdvertisingLocation.where advertisements_id: ad_id
     advertising_locations.each do |ad_location|
+      screens_landscape = 0
+      screens_portrait = 0
+
       # return json format to have control of its properties
       location = Location.find(ad_location[:locations_id]).as_json(only: [:id, :name, :address, :status])
 
+      # get screens from each location selected
+      screens = Screen.where(location_id: ad_location[:locations_id]).as_json(only: [:id, :screen_type_id, :screen_brand_id, :location_id, :code, :model, :sku, :orientation, :size_inches, :description])
+      screens.each do |screen|
+        screen[:selected] = false
+
+        screen_brand = ScreenBrand.find(screen["screen_brand_id"]).as_json(only: [:name])
+        screen[:screen_brand] = screen_brand
+
+        # puts screen["orientation"] 
+        if (screen["orientation"] === "Landscape")
+          screens_landscape = screens_landscape + 1
+        elsif (screen["orientation"] === "Portrait")
+          screens_portrait = screens_portrait + 1
+        end
+      end
+
       # add new field
       location[:show_screens] = false
+      location[:screens] = screens
+      location[:screens_landscape] = screens_landscape
+      location[:screens_portrait] = screens_portrait
       locations_selected.push(location)
     end
 

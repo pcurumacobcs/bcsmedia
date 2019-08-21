@@ -161,6 +161,10 @@ Rails.application.routes.draw do
       post "advertising_location", to: "advertising_locations#create"
       put "advertising_location", to: "advertising_locations#update"
       delete "advertising_location", to: "advertising_locations#destroy"
+
+      # Advertising Location Screens
+      get "advertising_location_screens", to: "advertising_location_screens#get_advertising_location_screens"
+      post "advertising_location_screens", to: "advertising_location_screens#create_advertising_location_screens"
     end
   end
 end
