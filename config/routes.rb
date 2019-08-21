@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       # Users
       get "users", to: "users#get_users"
+      get "user/:id", to: "users#get_user"
 
       # Location Types
       get "locations/types", to: "locations_types#get_locations_types"
@@ -24,10 +25,15 @@ Rails.application.routes.draw do
       delete "locations/types", to: "locations_types#destroy"
 
       # Locations
+      # CRUD
       get "locations", to: "locations#get_locations"
       post "locations", to: "locations#create"
       put "locations", to: "locations#update"
       delete "locations", to: "locations#destroy"
+      # filter
+      get "locations/filter", to: "locations#get_locations_search"
+      # Locations for advertising
+      get "locations_ads", to: "locations#get_locations_ads"
 
       # Business Types
       get "business_types", to: "business_types#get_business_types"
@@ -142,6 +148,23 @@ Rails.application.routes.draw do
       post "companies", to: "companies#create"
       put "companies", to: "companies#update"
       delete "companies", to: "companies#destroy"
+
+      # Advertisement
+      get "advertisements", to: "advertising#get_advertisements"
+      get "advertising", to: "advertising#get_advertising"
+      post "advertising", to: "advertising#create"
+      put "advertising", to: "advertising#update"
+      delete "advertising", to: "advertising#destroy"
+
+      # Advertising Locations
+      get "advertising_locations", to: "advertising_locations#get_advertising_locations"
+      post "advertising_location", to: "advertising_locations#create"
+      put "advertising_location", to: "advertising_locations#update"
+      delete "advertising_location", to: "advertising_locations#destroy"
+
+      # Advertising Location Screens
+      get "advertising_location_screens", to: "advertising_location_screens#get_advertising_location_screens"
+      post "advertising_location_screens", to: "advertising_location_screens#create_advertising_location_screens"
     end
   end
 end

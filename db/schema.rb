@@ -10,10 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_12_213615) do
+ActiveRecord::Schema.define(version: 2019_08_21_172712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "advertisements", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "contact_id"
+    t.bigint "company_id"
+    t.bigint "user_id"
+    t.integer "status", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_advertisements_on_user_id"
+  end
+
+  create_table "advertising_location_screens", force: :cascade do |t|
+    t.bigint "advertisements_id"
+    t.bigint "advertising_locations_id"
+    t.bigint "screen_id"
+    t.integer "status", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["advertisements_id"], name: "index_advertising_location_screens_on_advertisements_id"
+    t.index ["advertising_locations_id"], name: "index_advertising_location_screens_on_advertising_locations_id"
+    t.index ["screen_id"], name: "index_advertising_location_screens_on_screen_id"
+  end
+
+  create_table "advertising_locations", force: :cascade do |t|
+    t.bigint "advertisements_id"
+    t.bigint "locations_id"
+    t.integer "status", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["advertisements_id"], name: "index_advertising_locations_on_advertisements_id"
+    t.index ["locations_id"], name: "index_advertising_locations_on_locations_id"
+  end
 
   create_table "business_types", force: :cascade do |t|
     t.string "name", null: false
@@ -297,6 +330,12 @@ ActiveRecord::Schema.define(version: 2019_06_12_213615) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "advertisements", "users"
+  add_foreign_key "advertising_location_screens", "advertisements", column: "advertisements_id", on_delete: :cascade
+  add_foreign_key "advertising_location_screens", "advertising_locations", column: "advertising_locations_id", on_delete: :cascade
+  add_foreign_key "advertising_location_screens", "screens"
+  add_foreign_key "advertising_locations", "advertisements", column: "advertisements_id", on_delete: :cascade
+  add_foreign_key "advertising_locations", "locations", column: "locations_id", on_delete: :cascade
   add_foreign_key "companies", "company_industries"
   add_foreign_key "customer_companies", "companies", on_delete: :cascade
   add_foreign_key "customer_companies", "customers", on_delete: :cascade

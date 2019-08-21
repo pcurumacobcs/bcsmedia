@@ -35,6 +35,9 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'bootstrap'
 gem 'jquery-rails'
 
+# https://github.com/stympy/faker
+gem 'faker'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

@@ -1,0 +1,2 @@
+class AdvertisingLocationScreen < ApplicationRecord
+end

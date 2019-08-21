@@ -445,6 +445,27 @@ In all request **Header:**
 
 * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
 
+**GET** - */locations_ads*
+    
+* Response:
+    ```JSON
+    {
+        "data": [
+            {
+                "id": "integer",
+                "name": "string",
+                "address": "string",
+                "position": {
+                    "lat": "float",
+                    "lng": "float",
+                },
+                "selected": "boolean | default: false",
+            }
+        ],
+        "status": 1
+    }
+    ```
+
 ---
 
 ## Locations Business Types:
@@ -1620,3 +1641,192 @@ In all request **Header:**
     ```
 
 * Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Advertising:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */advertisements*
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */advertising*
+
+* Body:
+    ```JSON
+    {
+        "customer_id": "integer | optional | customer_id",
+        "contact_id": "integer | optional | contact_id",
+        "company_id": "integer | optional | company_id",
+        "user_id": "integer | required | user_id",
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */advertising*
+
+* Body:
+    ```JSON
+    {
+        "id": "advertising_id",
+        "customer_id": "integer | optional | customer_id",
+        "contact_id": "integer | optional | contact_id",
+        "company_id": "integer | optional | company_id",
+        "user_id": "integer | required | user_id",
+        "status": "integer | optional",
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */advertising*
+
+* Body:
+    ```JSON
+    {
+        "id": "advertising_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Advertising Locations:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */advertising_locations*
+
+* Body:
+    ```JSON
+    {
+        "advertising_id": "integer | optional | advertising_id"
+    }
+    ```
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */advertising_location*
+
+* Body:
+    ```JSON
+    {
+        "advertising_id": "integer | required | advertising_id",
+        "locations": "array | required | locations_array"
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+**PUT** - */advertising_location*
+
+* Body:
+    ```JSON
+    {
+        "id": "advertising_locations_id",
+        "advertisements_id": "integer | required | advertisements_id",
+        "locations_id": "integer | required | locations_id",
+        "status": "integer | optional",
+    }
+    ```
+
+* Response:
+
+    * Object updated.
+
+**DELETE** - */advertising_location*
+
+* Body:
+    ```JSON
+    {
+        "id": "advertising_locations_id"
+    }
+    ```
+
+* Response: ``` { "message": "resource successfully deleted", "status": 1 } ```
+
+---
+
+## Advertising Location Screens:
+
+**Prefix:** */api/v1*
+
+In all request **Header:**
+    ```JSON
+    {
+        "Authorization": "Token",
+        "Content-Type": "application/json"
+    }
+    ```
+
+**GET** - */advertising_location_screens*
+
+* Body:
+    ```JSON
+    {
+        "advertising_id": "integer | optional | advertising_id",
+        "advertising_locations_id": "integer | optional | advertising_locations_id"
+    }
+    ```
+
+* Response:
+    ```JSON
+    {
+        "data": [],
+        "status": 1
+    }
+    ```
+
+**POST** - */advertising_location_screens*
+
+* Body:
+    ```JSON
+    {
+        "advertising_id": "integer | required | advertising_id",
+        "locations": "array | required | locations_array"
+    }
+    ```
+
+* Response:
+
+    * Object created.
+
+* Response: ``` { "message": "success", "status": 1 } ```
