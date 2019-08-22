@@ -65,7 +65,8 @@ class Api::V1::AdvertisingController < ApplicationController
       :customer_id,
       :contact_id,
       :company_id,
-      :user_id
+      :user_id,
+      :status
     )
   end
 end
