@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       # Users
       get "users", to: "users#get_users"
       get "user/:id", to: "users#get_user"
+      put "user/:id", to: "users#update"
 
       # Location Types
       get "locations/types", to: "locations_types#get_locations_types"
