@@ -14,6 +14,20 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  # PUT /user
+  def update
+    @user = User.find(params[:id])
+
+    unless @user.update(user_params)
+      render json: { errors: @user.errors.full_messages, status: 0 },
+             status: :unprocessable_entity
+    else
+      render json: { user: @user, status: 1 } 
+    end
+  rescue ActiveRecord::RecordNotFound
+    resource_not_found
+  end
+
   # GET /user/:id
   def get_user
     @user = User.find(params[:id])
@@ -21,5 +35,18 @@ class Api::V1::UsersController < ApplicationController
     render json: { user: @user, status: 1 }
   rescue ActiveRecord::RecordNotFound
     resource_not_found
+  end
+
+  private
+
+  # params user
+  def user_params
+    params.permit(
+      :id,
+      :name,
+      :last_name,
+      :username,
+      :email,
+    )
   end
 end

@@ -38,6 +38,10 @@ gem 'jquery-rails'
 # https://github.com/stympy/faker
 gem 'faker'
 
+gem "carrierwave"
+
+gem "fog-aws"
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

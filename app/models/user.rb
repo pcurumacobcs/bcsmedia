@@ -7,4 +7,6 @@ class User < ApplicationRecord
   validates :password,
             length: { minimum: 6 },
             if: -> { new_record? || !password.nil? }
+
+  belongs_to :profile_pic, dependent: :destroy
 end

@@ -31,12 +31,15 @@ class Api::V1::AdvertisingLocationScreensController < ApplicationController
       locations.each do |location|
         ad_location = AdvertisingLocation.find_by advertisements_id: advertising_id, locations_id: location[:id]
 
-        if !location[:screens].nil?
-          location[:screens].each do |screen|
-            ad_loc_screen = AdvertisingLocationScreen.find_by advertisements_id: advertising_id, advertising_locations_id: ad_location[:id], screen_id: screen[:id]
+        if location[:screens].any?
+          ad_location_id = ad_location[:id]
+          screens = location[:screens]
 
+          screens.each do |screen|
+            ad_loc_screen = AdvertisingLocationScreen.find_by advertisements_id: advertising_id, advertising_locations_id: ad_location_id, screen_id: screen[:id]
+          
             if !ad_loc_screen.nil?
-              # if exist 
+              # if exist
               if !screen[:selected]
                 ad_loc_screen.destroy
               end
@@ -53,10 +56,37 @@ class Api::V1::AdvertisingLocationScreensController < ApplicationController
               end
             end # end ad_loc_screen
           end # end location[:screens].each
-        end # end locations.each
-      end
+        else
+          puts "No hay screens"
+        end # end location[:screens].nil?
+      end # end locations.each
 
-      render json: { message: 'success', status: 1 }, status: 200
+      # response structure
+      locations = []
+      screens_landscape = 0
+      screens_portrait = 0
+
+      ad_screens = AdvertisingLocationScreen.where(advertisements_id: advertising_id).as_json
+      ad_screens.each do |screen|
+        advertising_location = AdvertisingLocation.find screen["advertising_locations_id"]
+        screen["location"] = Location.find advertising_location[:locations_id]
+        locations.push(screen["location"])
+      
+        screen["screen"] = Screen.find screen["screen_id"]
+        if screen["screen"].orientation == 'Landscape'
+          screens_landscape = screens_landscape + 1
+        else
+          screens_portrait = screens_portrait + 1
+        end
+      end
+      render json: {
+        screens: ad_screens,
+        message: 'success',
+        locations: locations.uniq.count,
+        screens_landscape: screens_landscape,
+        screens_portrait: screens_portrait,
+        status: 1
+      }, status: 200
     else
       render json: { errors: 'Some Data is missing...', status: 0 }, status: :unprocessable_entity
     end
