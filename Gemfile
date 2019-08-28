@@ -31,6 +31,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use cors
 gem 'rack-cors', :require => 'rack/cors'
 
+gem 'ed25519' , '>= 1.2', '< 2.0'
+gem 'bcrypt_pbkdf' , '>= 1.0', '< 2.0'
+
 # Boostrap 4 
 gem 'bootstrap'
 gem 'jquery-rails'
@@ -47,6 +50,10 @@ gem "fog-aws"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'capistrano', '~> 3.11'
+gem 'capistrano-rails', '~> 1.4'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
